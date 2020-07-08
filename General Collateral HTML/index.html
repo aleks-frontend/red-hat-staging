@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="{{{lang}}}">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{{ headline-breakonly }}}</title>
+    <!-- Clipboard JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>    
+  <!-- jQuery -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="main.js"></script>
+    <!-- template styles -->  
+    <!-- Red Hat Brand Font -->      
+    <link href='//overpass-30e2.kxcdn.com/overpass.css' rel='stylesheet' />
+    <style>
+      .hideOutfit {
+        display: none !important;
+      }
+      
+      #selections .content-wrapper {
+        padding: 2em;
+      }
+    </style>    
+  </head>
+  <body>
+    <div class="js-exports"></div>
+    
+    <div id="case-study">
+    <div id="selections" class="dynamic-content">
+    <style> 
+       .dynamic-content {
+      display: block;
+  }
+  .copy-overlay {
+      background: #eee;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+  }
+
+  .copy-content {
+      margin: 0 auto;
+      text-align: center;
+      background: #eee;
+      padding: 2em;
+  }
+
+  .copy-content div {
+      padding: 0 0 2em 0;
+  }
+
+  .btn-red {
+      background-color: #c00;
+      color: #fff;
+      display: inline-block;
+      border: none;
+      font-family: "Overpass", "Interstate", "Helvetica", sans-serif;
+      font-size: 1rem;
+      padding: 0.4rem 2rem;
+      font-weight: bold;
+      text-decoration: none;
+      text-transform: uppercase;
+  }
+      /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */ /* Document ========================================================================== */ /** * 1. Correct the line height in all browsers. * 2. Prevent adjustments of font size after orientation changes in iOS. */ html {line-height: 1.15; /* 1 */ -webkit-text-size-adjust: 100%; /* 2 */ } /* Sections ========================================================================== */ /** * Remove the margin in all browsers. */ body {margin: 0; } /** * Correct the font size and margin on `h1` elements within `section` and * `article` contexts in Chrome, Firefox, and Safari. */ h1 {font-size: 2em; margin: 0.67em 0; } /* Grouping content ========================================================================== */ /** * 1. Add the correct box sizing in Firefox. * 2. Show the overflow in Edge and IE. */ hr {box-sizing: content-box; /* 1 */ height: 0; /* 1 */ overflow: visible; /* 2 */ } /** * 1. Correct the inheritance and scaling of font size in all browsers. * 2. Correct the odd `em` font sizing in all browsers. */ pre {font-family: monospace, monospace; /* 1 */ font-size: 1em; /* 2 */ } /* Text-level semantics ========================================================================== */ /** * Remove the gray background on active links in IE 10. */ a {background-color: transparent; } /** * 1. Remove the bottom border in Chrome 57- * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari. */ abbr[title] {border-bottom: none; /* 1 */ text-decoration: underline; /* 2 */ text-decoration: underline dotted; /* 2 */ } /** * Add the correct font weight in Chrome, Edge, and Safari. */ b, strong {font-weight: bolder; } /** * 1. Correct the inheritance and scaling of font size in all browsers. * 2. Correct the odd `em` font sizing in all browsers. */ code, kbd, samp {font-family: monospace, monospace; /* 1 */ font-size: 1em; /* 2 */ } /** * Add the correct font size in all browsers. */ small {font-size: 80%; } /** * Prevent `sub` and `sup` elements from affecting the line height in * all browsers. */ sub, sup {font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } sub {bottom: -0.25em; } sup {top: -0.5em; } /* Embedded content ========================================================================== */ /** * Remove the border on images inside links in IE 10. */ img {border-style: none; } /* Forms ========================================================================== */ /** * 1. Change the font styles in all browsers. * 2. Remove the margin in Firefox and Safari. */ button, input, optgroup, select, textarea {font-family: inherit; /* 1 */ font-size: 100%; /* 1 */ line-height: 1.15; /* 1 */ margin: 0; /* 2 */ } /** * Show the overflow in IE. * 1. Show the overflow in Edge. */ button, input { /* 1 */ overflow: visible; } /** * Remove the inheritance of text transform in Edge, Firefox, and IE. * 1. Remove the inheritance of text transform in Firefox. */ button, select { /* 1 */ text-transform: none; } /** * Correct the inability to style clickable types in iOS and Safari. */ button, [type="button"], [type="reset"], [type="submit"] {-webkit-appearance: button; } /** * Remove the inner border and padding in Firefox. */ button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner, [type="submit"]::-moz-focus-inner {border-style: none; padding: 0; } /** * Restore the focus styles unset by the previous rule. */ button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring {outline: 1px dotted ButtonText; } /** * Correct the padding in Firefox. */ fieldset {padding: 0.35em 0.75em 0.625em; } /** * 1. Correct the text wrapping in Edge and IE. * 2. Correct the color inheritance from `fieldset` elements in IE. * 3. Remove the padding so developers are not caught out when they zero out *    `fieldset` elements in all browsers. */ legend {box-sizing: border-box; /* 1 */ color: inherit; /* 2 */ display: table; /* 1 */ max-width: 100%; /* 1 */ padding: 0; /* 3 */ white-space: normal; /* 1 */ } /** * Add the correct vertical alignment in Chrome, Firefox, and Opera. */ progress {vertical-align: baseline; } /** * Remove the default vertical scrollbar in IE 10+. */ textarea {overflow: auto; } /** * 1. Add the correct box sizing in IE 10. * 2. Remove the padding in IE 10. */ [type="checkbox"], [type="radio"] {box-sizing: border-box; /* 1 */ padding: 0; /* 2 */ } /** * Correct the cursor style of increment and decrement buttons in Chrome. */ [type="number"]::-webkit-inner-spin-button, [type="number"]::-webkit-outer-spin-button {height: auto; } /** * 1. Correct the odd appearance in Chrome and Safari. * 2. Correct the outline style in Safari. */ [type="search"] {-webkit-appearance: textfield; /* 1 */ outline-offset: -2px; /* 2 */ } /** * Remove the inner padding in Chrome and Safari on macOS. */ [type="search"]::-webkit-search-decoration {-webkit-appearance: none; } /** * 1. Correct the inability to style clickable types in iOS and Safari. * 2. Change font properties to `inherit` in Safari. */ ::-webkit-file-upload-button {-webkit-appearance: button; /* 1 */ font: inherit; /* 2 */ } /* Interactive ========================================================================== */ /* * Add the correct display in Edge, IE 10+, and Firefox. */ details {display: block; } /* * Add the correct display in all browsers. */ summary {display: list-item; } /* Misc ========================================================================== */ /** * Add the correct display in IE 10+. */ template {display: none; } /** * Add the correct display in IE 10. */ [hidden] {display: none; }
+
+html, :root {
+  background: white;
+  font-size: 100%;
+  line-height: 1.5;  
+  font-family: "Overpass", "Interstate", "Helvetica", sans-serif;
+  counter-reset: pagenumber;
+  color: #57595b;
+  font-weight: 300;
+}
+body {
+  font-size: 0.9em;
+}
+/*---------------------------------------------TYPE------------------------------------------*/
+
+.en { font-family:"Overpass",sans-serif; }
+.jp  .subheading *, html[lang="jp"] .subheading *, .jp { font-family: "Overpass", "Hiragino Kaku Gothic ProN", "Hiragino Kaku Gothic", "Hiragino Kaku Gothic Pro W3", sans-serif !important; }
+.ko {font-family: "Overpass", "Malgun Gothic", "HelveticaNeueW01-85Heav", sans-serif; }
+.zh {font-family: "Overpass", "Microsoft Yahei", "Hiragino Sans GB", sans-serif; }
+
+      #selections  h1, 
+      #selections h2, 
+      #selections h3, 
+      #selections h4, 
+      #selections h5, 
+      #selections h6 {
+  text-transform: uppercase;
+  color: #e52233;
+  margin-bottom: 0.7em; }
+
+       #selections h1:first-child, 
+       #selections h2:first-child, 
+       #selections h3:first-child, 
+       #selections h4:first-child, 
+       #selections h5:first-child, 
+       #selections h6:first-child {
+  margin-top: 0; }
+
+
+      #selections h4, 
+      #selections h5, 
+      #selections h6 {
+  color: #57595b;
+}
+
+#selections .cover-page .number.right {
+  visibility: hidden;
+}
+
+
+      #selections p, 
+      #selections ul, 
+      #selections dl, 
+      #selections ol { 
+        margin-top: 0; 
+        margin-bottom: 0.7em; 
+      }
+
+#selections h6 { font-size: 0.667em; }
+
+      #selections h1,
+      #selections h2 {
+        font-size: 1.2em;
+        color: #cc0000 !important;
+        margin: 0.83em 0;
+      }
+      #selections h3 { 
+        font-size: 1.17em; 
+        margin: 1em 0;
+      }
+      #selections h4 { 
+        margin: 1.33em 0 0;
+        font-size: 1em; 
+        text-transform: initial !important; 
+      }
+      #selections .content-text h2:first-child {
+        margin-top: 0;
+      }
+      
+      #selections p {
+        font-size: 1em;
+        line-height: inherit;
+        margin: 0 0 1em;
+      }
+
+      #selections .sidebar-quote h1 {
+        font-size: 11pt;
+        text-align: right;
+        font-weight: 300;
+        line-height: 1.2em;
+        font-style: italic;
+        text-transform: initial;
+      }
+      
+      #selections .sidebar-quote p {
+        font-size: 0.8em;
+        text-align: right;
+        padding: 0;
+        text-transform: uppercase;
+      }
+      
+      #selections .sidebar-quote p span {
+        font-weight: 300;
+        display: block;
+      }
+
+#selections .page-content h2 {
+  font-size: 10pt !important;
+  color: #b90c20 !important;
+  font-weight: bold;
+}
+
+#selections .page-content p {
+  font-size: 11px !important;
+}
+
+#selections .page-content td {
+  font-size: 8pt !important;
+  padding: 5pt;
+}
+
+#selections blockquote {
+  font-size: 1.5em;
+  line-height: 1.4em;
+  font-style: italic;
+  margin: 0;
+  margin-bottom: 0.7em }
+
+      #selections blockquote:before, 
+      #selections blockquote:after {
+  content: '"';
+  font-size: 1.25em;
+  line-height: 1em; }
+
+#selections small { font-size: 8pt !important; line-height: 1.4em; }
+
+#selections cite {
+  font-size: 0.7em;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  font-style: normal; }
+#selections cite p { margin: 0; }
+
+
+      #selections ul, 
+      #selections ol { padding-left: 1.25em; }
+
+#selections li { margin-bottom: 0.7em; }
+
+#selections hr {
+  background: none;
+  border: none;
+  border-bottom: 1px solid;
+  margin-top: 1.4em;
+  margin-bottom: 1.4em; }
+
+#selections .small-block { margin-bottom: 0.125em; display: block; }
+
+#selections .first-page strong {
+  text-transform: uppercase;
+  color: #b90c20;
+  font-weight: 700 !important }
+#selections strong { font-weight: 700 !important } 
+
+#selections .heavier {
+  font-weight: 600; }
+
+#selections .right { text-align: right !important }
+
+#selections .small { font-size: 0.7em; line-height: 1.3em; }
+
+#selections .white { color: white !important }
+
+#selections .full-width { width: 100%; }
+
+
+#selections .page {
+  position: relative;
+  background: white;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box; 
+  overflow: hidden;  
+}
+
+#selections .draft .page { 
+  background-size: 5em;
+  background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/027fd34e425fe4e0b0c90d7fa9bdd78c/draft.svg') }
+
+#selections .cover-page .header{
+  height: 18vh;
+  background-position: 75%;
+}
+#selections .cover-page .header-content {
+  position: relative;
+  z-index: 10000;
+  height: 100%;
+  align-items: center;
+  display: flex }
+#selections .cover-page .header-content .h1-wrapper {
+  background: #e22434;
+  width: 70vw;
+  box-shadow: 5px 10px 8px 5px rgba(0, 0, 0, 0.2);
+  padding: 2em 2em 2em 0 }
+#selections .cover-page .header-content .header-details {
+  padding-left: 40pt;
+  padding-right: 40pt;
+  display: flex;
+  padding-bottom: 1em;
+  margin-top: 23pt;
+  align-items: center;
+  justify-content: space-between } 
+#selections .cover-page .header-content h1 {
+  margin: 0;
+  line-height: 1em;
+  font-size: 18pt;
+  letter-spacing: 0.1em }
+
+#selections .cover-page .header-content h2 {
+  font-size: 11pt;
+  font-weight: bolder;
+  text-transform: initial;
+  margin-top: 0;
+  margin-bottom: 0.2em;
+}
+#selections .collection-pages .header {
+  top: 27pt;
+  position: relative;
+  height: 50pt }
+#selections .collection-pages .sidebar {
+  top: 0;
+  left: 0;
+  position: absolute }
+#selections .collection-sidebar {
+  padding-right: 1em;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-height: calc(86.3vh - 100pt) }
+#selections .collection-sidebar .quote {
+  font-style: italic }
+#selections .collection-sidebar .quote p {
+  font-size: 11pt }
+#selections .collection-sidebar .name {
+  padding-top: 0.5em;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: 700 }
+#selections .collection-sidebar .position {
+  padding-top: 0.5em;
+  text-transform: uppercase;
+  font-size: 0.7em }
+#selections .collection-sidebar img {
+  width: 100% }
+
+#selections .last-page .header {
+  position: relative;
+  height: 23vh }
+
+      #selections .last-page .logo-lockup, 
+      #selections .last-page .headline {
+  z-index: 1000 }
+#selections .headline {
+  left: 0;
+  bottom: 0pt;
+  width: 100%;
+  box-sizing: border-box; 
+  font-size: 9pt; } 
+#selections .last-page .logo-lockup {
+  align-items: center;
+  display: flex }
+
+#selections .last-page .header-content .header-details {
+  display: flex;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 23pt;
+  left: 40pt;
+  right: 40pt;
+}
+
+#selections .last-page .sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#selections .last-page .sidebar {
+  top: 0;
+  left: 0;
+  position: absolute }
+
+#selections .logo-lockup {
+  align-items: center;
+  display: flex 
+}
+#selections .content {
+  position: relative;
+}
+
+#selections .flex { 
+  display: flex }
+
+#selections .columns {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#selections .with-border + .with-border {
+  border-left: 1px solid #828384 }
+
+#selections footer {
+  box-sizing: border-box;
+}
+#selections footer .website {
+  box-sizing: border-box;
+  padding-right: 1em;
+  font-size: 7pt;
+  margin-top: 10pt; }
+#selections footer .number:before {
+  counter-increment: pagenumber;
+  content: counter(pagenumber) }
+
+
+#selections .customer-logo {
+  box-sizing: border-box;
+  padding-bottom: 1em;
+  padding-right: 2em;
+  border-bottom: 1px solid #828384;
+}
+#selections .customer-logo img {
+  width: 100%; 
+}
+
+#selections .cover-page h2 {
+  font-size: 8.5pt }
+
+#selections .more-info {
+  border-top: 1px solid black;
+  padding-top: 5pt;
+  margin-bottom: 20pt;
+}
+
+#selections .more-info p {
+  font-size: 8pt;
+  font-weight: 300;
+  margin-bottom: 0;
+}
+
+#selections .more-info a {
+  color: #00B1E8;
+  font-weight: normal;
+}
+
+#selections .customer-summary {
+  padding-left: 0em;
+  border-bottom: 1px solid #828384;
+  padding-bottom: 1em }
+
+#selections .map-hit-target {
+  width: 100%;
+  height: 17em;
+  position: absolute;
+  z-index: 1000;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+#selections #map {
+  pointer-events: none;
+  height: 16em;
+  background-color: #d2d4d5; }
+#selections #map * { pointer-events: none; }
+#selections #map path.road {
+  stroke: #e4e4e7;
+  fill: none; }
+#selections #map path.water {
+  stroke: #f2f2f3;
+  fill: #f2f2f3; }
+
+#selections .marker-icon > div {
+  padding-left: 100%; }
+
+#selections .marker-icon:before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background-color: #b90c20;
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-33.333%);
+  border-radius: 100%; }
+
+#selections .leaflet-bottom.leaflet-right {
+  display: none }
+
+#selections .leaflet-top.leaflet-left {
+  display: none }
+
+#selections .customer-representative-quote {
+  padding: 1em; 
+  text-align: right;
+  font-style: italic }
+#selections .quote:after{ content: '”' }
+#selections .quote:before{ content: '“' }
+#selections .customer-representative-quote .quote * {
+  display: inline }
+
+#selections .benefits, .customer-statistics {
+  padding-top: 1em;
+  padding-left: 1em;
+  border-top: 1px solid #828384 }
+
+#selections .customer-statistics * {
+  text-transform: uppercase !important }
+#selections .customer-statistics strong {
+  font-weight: 8.5pt;
+  margin-right: 0.3em }
+
+#selections .customer-industry {
+  padding-top: 1em;
+  padding-left: 1em }
+
+#selections .industry-icon {
+  width: 3em; }
+#selections .industry-icon:before {
+  display: block; }
+#selections .industry-icon.education:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/189ed0e492d89f3d21c6e0435d6c78a1/Icon_RH_Object_Book-Open_RGB_Flat.svg'); }
+#selections .industry-icon.technology:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/423fc654f5c55f691f28cfae0567676d/Icon_RH_Software_Data_RGB_Flat.svg'); }
+#selections .industry-icon.financial:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/240ff719fa3cd26890987f4e4f56dc07/Icon_RH_Diagram_Financial_RGB_Flat.svg'); }
+#selections .industry-icon.telecommunications:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/5994463ff7a2d64cf8256bc78906e42e/Icon_RH_Object_Phone-mobile-text_RGB_Flat.svg'); }
+#selections .industry-icon.government:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/622ac453967bbf744f5c91894fbe58ab/Icon_RH_Verticals_Government_RGB_Flat.svg'); }
+#selections .industry-icon.aviation:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/1d3edfd46d8b0ef7856c65f1a945851b/Icon_RH_Transportation_Airplane_RGB_Flat.svg'); } 
+#selections .industry-icon.healthcare:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/1b634232a73a4b48d54527f059a13ba9/Icon_RH_Science_HeartMonitor_RGB_Flat.svg'); }
+#selections .industry-icon.construction:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/171c8d14ae99eb3a70f7b4ded3d0bacd/Icon_RH_Signage_HardHat-Construction_RGB_Flat.svg'); }
+#selections .industry-icon.healthcare:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/377bd4178e5724d0fe6589c34d492218/Icon_RH_Science_Health-LifeSciences_RGB_Flat.svg'); }
+#selections .industry-icon.hospitality:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/85726f2d2114a2b9a077f6a63eab5249/Icon_RH_People_Receptionist_RGB_Flat.svg'); }
+#selections .industry-icon.it-consulting-amp-services:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/f05f315f65ae34b72fac0c74dc8e7dbe/Icon_RH_People_Support-Hosting_RGB_Flat.svg'); }
+#selections .industry-icon.logistics-amp-transportation:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/edb86d0565c4b759ca1ffce47dca7888/Icon_RH_Transportation_Truck-Delivery_RGB_Flat.svg'); }
+#selections .industry-icon.manufacturing:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/fab80abf41bbf85c17d0d299eebbf73c/Icon_RH_Buildings_Industry_RGB_Flat.svg'); }
+#selections .industry-icon.media-amp-entertainment:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/5d68f67825f90b6be07636ea157e9c62/Icon_RH_Media_Multimedia_RGB_Flat.svg'); }
+#selections .industry-icon.oil-amp-gas:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/7010f7c0cc8bcd67c4a53ae3960c1657/Icon_RH_Nature_WaterDroplets_RGB_Flat.svg'); }
+#selections .industry-icon.retail:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/6ebf4ad551e33b14298b2790166d8843/Icon_RH_Object_CashRegister-POS_RGB_Flat.svg'); }
+#selections .industry-icon.utilities:before { content: url('//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/9705af3790dc31d99fd1140ebcfa6082/Icon_RH_Media_Radio-Podcast_RGB_Flat.svg'); }
+
+#selections .social-icons {
+  text-align: right }
+#selections .social-icons img {
+  width: 1.6em }
+#selections .social-icons .building {
+  width: 2.7em; }
+
+#selections .content-and-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column 
+}
+
+#selections .info-and-copyright {
+  margin-top: auto; }
+#selections .info-and-copyright p:last-child {
+  margin-bottom: 0 }
+#selections .info-and-copyright .column {
+  padding-right: 1em }
+#selections .copyright {
+  padding-top: 0.5em }
+
+#selections .info-and-copyright p {
+  font-size: 8pt;
+}
+
+#selections .info-and-copyright .copyright p {
+  font-size: 6pt;
+  line-height: 8pt;
+}
+
+#selections .footnote {
+  font-size: 0.8em;
+  max-height: 40pt;
+  border-top: 1px solid #828384;
+  margin: 2pt 0 10pt;
+}
+
+#selections .footnote-target {
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  right: 0;
+}
+#selections .footnote.overflow {
+  position: absolute;  
+}
+
+#selections .overflow {
+  position: relative }
+#selections .overflow * { 
+  color: red !important }
+
+#selections .overflow::before {
+  content: '+';
+  position: absolute;
+  z-index: 5;
+  top: 5px;
+  right: 5px;
+  height: 15px;
+  width: 15px;
+  border: 1px solid red;
+  color: red;
+  padding: 2px 2px 2px 3px;
+  box-sizing: border-box;
+  font-size: 13px;
+  text-align: center;
+  line-height: 8px;
+  background-color: white;
+  text-align: center }
+#selections .overflow:hover:before {
+  background-color: red;
+  color: white }
+#selections .overflow:after {
+  display: none }
+#selections .overflow:hover:after {
+  display: block;
+  content: "There is too much content for this page. Please increase the number of 'EXTRA PAGES', or remove some content to resolve it";
+  position: absolute;
+  top: 25px;
+  right: 5px;
+  background-color: black;
+  color: white;
+  border-radius: 2px;
+  padding: 5px;
+  box-sizing: border-box;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.1em;
+  text-align: right;
+  width: 15em }
+
+#selections .header-hit-target {
+    position: absolute;
+    width: 100%;
+    height: 27vh;
+    top: 0;
+    z-index: 200;
+  }
+
+  #selections .header-hit-target > .token-value {
+    width: 100%;
+    position: absolute;
+    height: 100%;  
+    color: transparent;
+  }
+
+  #selections .header-hit-target + .token-value {
+    height: 100%;
+    width: 100%;
+    z-index: 1000 !important;
+  }
+
+  #selections .header-content {
+    pointer-events: none;
+  }
+  
+  #selections .header-text {
+    position: absolute;
+    bottom: 21pt;
+    left: 42pt;
+    right: 49pt;
+  }
+
+  #selections .header-content .white, .header-content .supporting-logo {
+    pointer-events: all;
+  }
+
+  #selections .page {pointer-events: all !important;}
+
+  #selections .redhat-logo {
+    width: 10em 
+  }
+
+  {{#supporting-logo}}
+  #selections .red-header .redhat-logo {
+    width: 8em 
+  }
+
+  #selections .supporting-logo {
+    height: 3em;
+    width: 14em;
+    background-size: contain;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-image: url('{{{supporting-logo}}}') }
+
+  #selections .lockup-seperator {
+    height: 4em;
+    width: 1px;
+    background: white;
+    margin: 0 2em }
+  {{/supporting-logo}}
+
+  {{#supporting-logo-reversed}}
+  #selections .white-header .redhat-logo {
+    width: 8em 
+  }
+
+  #selections .supporting-logo-reversed {
+    height: 3em;
+    width: 8em;
+    background-size: contain;
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-image: url('{{{supporting-logo-reversed}}}') }
+
+  #selections .lockup-seperator-reversed {
+    height: 4em;
+    width: 1px;
+    background: black;
+    margin: 0 2em }
+  {{/supporting-logo-reversed}}
+
+
+
+  
+      #selections .cover-page .header, 
+      #selections .last-page .header {
+    background-image: url('{{{header-background-image-choice}}}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  #selections .quote p { display: inline }
+
+  
+      #selections .sidebar-item .name, 
+      #selections .sidebar-item .position {
+    padding: 0;
+  }
+
+  
+      #selections .sidebar-item .name p, 
+      #selections .sidebar-item .position p {
+    margin: 0;
+  }
+
+  #selections #js-content-for-sidebar .sidebar-item {
+    background: white;
+    color: red;
+    z-index: 99999999;
+    padding: 40pt;
+  }
+  #selections .customer-summary p {
+    margin: 0;
+  }
+
+  #selections .customer-summary p + p {
+    margin-top: 0.7em;
+  }
+
+  #selections .logo-lockup {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  #selections .full-width {
+    height: 100%;
+  }
+
+  #selections .red-header .redhat-logo {
+    width: 12em;
+  }
+
+  #selections .cover-page .header {
+    height: 20.9vh;
+    background-position: 75%;
+  }
+
+  #selections .header.white-header{
+    padding-left: 40pt;
+    padding-right: 40pt;
+    display: flex;
+    padding-bottom: 1em;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 4px solid #A7A9AB;
+  }
+
+
+  #selections .column.twenty-five {
+    display: flex;
+    webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  
+#selections table#table-section {
+    font-size: 16px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+  }
+
+
+  #selections table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+  }
+
+  
+      #selections .w3-white, 
+      #selections .w3-hover-white:hover {
+    color: #000!important;
+    background-color: #fff!important;
+  }
+
+  
+      #selections .w3-light-grey, 
+      #selections .w3-hover-light-grey:hover, 
+      #selections .w3-light-gray, 
+      #selections .w3-hover-light-gray:hover {
+    color: #000!important;
+    background-color: #f1f1f1!important;
+  }
+
+  
+      #selections .w3-light-grey, 
+      #selections .w3-hover-light-grey:hover, 
+      #selections .w3-light-gray, 
+      #selections .w3-hover-light-gray:hover {
+    color: #000!important;
+    background-color: #f1f1f1!important;
+  }
+
+  #selections .red-header .redhat-logo {
+    width: 10em;
+  }
+  
+  
+      #selections .sidebars h1, 
+      #selections h2, 
+      #selections h3, 
+      #selections h4, 
+      #selections h5, 
+      #selections p{
+    color: #58595b !important;
+  }
+
+  #selections .test-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.6;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+  }
+  
+  #selections table#table-section {
+    font-size: 16px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+  }
+
+  #selections table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+  }
+
+  #selections tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+  }
+
+  #selections table#table-section {
+    font-size: 16px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+  }
+
+  #selections table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+    position: relative;
+    border-bottom: 1px solid black;
+    margin: 10pt 0;
+  }
+  
+  #selections a {
+    color: #cc0000;
+    text-decoration: none;
+  }
+
+  #selections tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: white;
+  }
+
+  #selections table#table-section {
+    font-size: 10pt;
+    color: #58595b;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+  }
+
+  #selections #table-section th {
+    padding-top: 11px;
+    padding-bottom: 11px;
+    background-color: white;
+    color: #58595b;
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  
+      #selections #table-section td, 
+      #selections #table-section th {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  
+      #selections .table-heading + .table-row, 
+      #selections .table-row:first-child {
+    border-top: 1px solid #58595b;
+  }
+
+  #selections tr:nth-child(odd) {
+    background-color: #E6E7E8 !important;
+  }
+  #selections tr:nth-child(even) {
+    background-color: #ffffff !important;
+  }
+
+  #selections tr td {
+    font-size: 8pt !important;
+    padding: 5pt;
+    margin-bottom: 0;
+  }
+
+  #selections tr td:nth-child(even) {
+    border-left: 1px solid white;
+    font-weight: 200;
+  }
+
+  #selections tr td:nth-child(odd) {
+    width: 14em;
+    font-weight: bold;
+    vertical-align: top;
+  }
+  
+  #selections .content-image {
+    width: 100%;
+    margin: 10pt 0 10pt 0;
+    background-color: #E6E7E8;
+    padding: 10pt;
+        box-sizing: border-box;
+  }
+  
+  #selections .content-image .image {
+    width: 100%;
+    height: 250px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
+  }
+  
+  #selections .content-image .caption {
+    border-top: 1px solid rgb(87, 89, 91);
+    margin-top: 10pt;
+    padding-top: 5pt;
+  }
+  
+  #selections .content-image .caption p {
+    font-size: 8pt;
+    font-style: italic;
+    margin-bottom: 0 !important;
+  }
+  
+  #selections .footnote-content {
+    font-size: 8pt;
+    padding-top: 2pt;
+    font-style: italic;
+    padding: 0 0 0 0.6em;
+  }
+  
+  #selections .about-redhat p {
+    line-height: 11pt;
+  }
+  
+  #selections .about-redhat {
+    margin-bottom: 8pt;
+  }
+
+  #selections .last-page .sidebar-item {
+    padding: 40pt 0 0;
+  }
+
+  #selections .break-inside {
+    break-inside: avoid !important;
+  }      
+      
+@media (min-width: 768px) {
+  #selections .twenty-five {
+    width: 23%;
+  }
+  #selections .seventy-five {
+    width: 74%;
+    padding: 0 0 0 1.5em;
+  }
+  #selections .columns {
+	flex-flow: row nowrap;
+  }
+}
+    </style>
+      <div class="content-wrapper">
+        <div class="content">
+          <div class="columns">
+            <div class="column twenty-five">
+              <div>
+                <div class="first-page-sidebar sidebars">{{{first-page-sidebar-content}}}</div>
+{{#collection.content-for-sidebar}}
+      
+        <div class="sidebar-item" data-targetpage="{{ page-number }}">
+          <div class="sidebar-container">
+          <div class="first-page-sidebar sidebars">
+            {{#collection.sidebar-content-blocks}}
+              {{#block.sidebar-text-section}}
+              <div class="sidebar-text">
+                {{{ sidebar-text-content }}}
+              </div>
+              {{/block.sidebar-text-section}}
+            
+              {{#block.sidebar-quote-section}}
+              <div class="sidebar-quote">
+                <h1>
+                  <span style="font-size: 1.65em;">&ldquo;</span>
+                  {{{ sidebar-quote }}}
+                  <span style="font-size: 1.65em;">&rdquo;</span>
+                </h1>
+                <p>{{{ author }}}<span>{{{ organisation }}}</span></p>
+              </div>
+              {{/block.sidebar-quote-section}}
+            {{/collection.sidebar-content-blocks}}
+          </div>
+          </div>
+        </div>
+
+      {{/collection.content-for-sidebar}}
+              </div> 
+            </div>
+
+
+			<div class="column seventy-five">
+<article id="content">
+    <div class="content-collection-container">
+      {{ #collection.main-content }}
+
+      {{ #block.text-section }}
+      <div class="content-text {{collection-block-title}}">
+        {{{ text-title }}}
+        {{{text-content}}}
+      </div><!--content-collection-->
+      {{ /block.text-section }}
+
+      {{ #block.image-section }}
+      <div class="content-image break-inside {{collection-block-title}}">
+        <div class="image" style="background-image: url('{{{ image }}}')"></div>
+        <div class="caption"><p>{{{ caption }}}</p></div>
+      </div><!--content-collection-->
+      {{ /block.image-section }}
+
+      {{ #block.table-section }}
+      <table id="table-section" class="{{collection-block-title}}">
+        <tr class="table-heading">
+          {{ #table-header-row-one }}<th>{{{ table-header-row-one }}}</th>{{ /table-header-row-one }}
+          {{ #table-header-row-two }}<th>{{{ table-header-row-two }}}</th>{{ /table-header-row-two }}
+        </tr>
+        
+        {{#spreadsheet.table-section}}
+          <tr class="break-inside table-row">
+            {{ #table-row }}<td>{{{ table-row }}}</td>{{ /table-row }}
+            {{ #table-row-two }}<td>{{{ table-row-two }}}</td>{{ /table-row-two }}
+          </tr>
+        {{/spreadsheet.table-section}}
+      </table>
+      {{ /block.table-section }}
+
+      {{ /collection.main-content }}
+      
+            {{#collection.footnotes}}
+      <div class="footnote {{page-number}}">
+        <div class="footnote-content">
+          {{{footnote-content}}}
+        </div>
+      </div>
+      {{/collection.footnotes}}
+    </div><!--content-collection-->
+  </article>            
+            </div>
+          </div><!--columns--> 
+        </div><!--content-->
+      </div><!-- End Content Wrapper -->
+    </div><!-- End Selections-->
+    </div> <!-- End Case Study -->
+    <!-- autoprefix css -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script>
+      /*
+*  Include this Snippet to Enforce Text lockups and line limits
+*  NOTES 
+*   - This requires base.css as it utilises overflow clss styles.
+*   - Your element must have an explicit line-heights set
+*/
+
+// Grab all nodes to be checked
+var nodesToCheck = document.querySelectorAll('[data-limit]');
+
+// Set up our Observables
+var lineObservable = new ResizeObserver(function(entries, observer) {
+    entries.forEach(function(entry) {
+        checkLimitedText(entry.target);
+    })
+});  
+
+// Observe All the Nodes
+nodesToCheck.forEach(function(node) {
+    lineObservable.observe(node);      
+});
+
+function checkLimitedText(node) {
+        // Check the line limit set   
+        const limit = node.getAttribute('data-limit');
+        // Count the amount of lines currently in the element
+        const lines = countElementLines(node); 
+        if (lines > limit) {
+            node.classList.add("overflow");
+        } 
+        else {
+            node.classList.remove("overflow");
+        }
+}
+// Calculates the amount lines in a node
+// based on the css line-height value
+function countElementLines(node) {
+    var styles = window.getComputedStyle(node);
+    const height = parseFloat(styles.getPropertyValue("height"));
+    const padding = parseFloat(styles.getPropertyValue("padding-bottom"));
+  	const border = parseFloat(styles.getPropertyValue("border-bottom"));
+    const lineHeight = parseFloat(styles.getPropertyValue('line-height'));
+    const lines = Math.ceil((height - padding - border) / lineHeight);
+    return lines;
+}      
+    </script>
+  </body>
+</html>
