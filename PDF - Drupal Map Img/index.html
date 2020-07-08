@@ -1,0 +1,119 @@
+<!DOCTYPE>
+<html async>
+<head>
+  <meta charset="utf-8">
+  <!-- Map Themes -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.js"></script>
+  <!-- Google Location -->
+  <script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+  <!-- Map Styles -->      
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.css' rel='stylesheet' />
+  
+    <link href='https://overpass-30e2.kxcdn.com/overpass.css' rel='stylesheet' />
+  <!-- Map to Image Library -->
+<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.4/leaflet-image.js'></script>
+
+  <!--Google Location Search-->  
+  <script type="text/javascript">
+    var geocoder = new google.maps.Geocoder();
+    var address  = "{{^ map-location }}london{{/ map-location }}{{ map-location }}";
+
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        var latitude  = results[0].geometry.location.lat();
+        var longitude = results[0].geometry.location.lng();
+        var map       = L.map('map').setView([latitude, longitude], {{^map-zoom}}2{{/map-zoom}}{{map-zoom}});
+
+        L.dragging    = false;
+
+        map.scrollWheelZoom.disable()
+
+        L.tileLayer('https://a.tiles.mapbox.com/v4/johnpmorris.5db73044/{z}/{x}/{y}@2x.png?access_token={accessToken}', {
+          maxZoom: 6,
+          minZoom: 2,
+          accessToken: 'pk.eyJ1Ijoiam9obnBtb3JyaXMiLCJhIjoiY2lmbmFucGUzMDE4c3RlbHhkOG9wa280NSJ9.-p-KgxOeuBlz8crTzRktJQ'
+        }).addTo(map);
+        
+        // Turn the leaflet map into an Image
+        leafletImage(map, function(err, canvas) {
+            // now you have canvas
+            // example thing to do with that canvas:
+            var img = document.createElement('img');
+            var dimensions = map.getSize();
+            img.width = dimensions.x;
+            img.height = dimensions.y;
+            img.src = canvas.toDataURL();
+            document.getElementById('map').innerHTML = '';
+            document.getElementById('map').appendChild(img);
+          
+              document.dispatchEvent(new Event('printready'))
+        });
+      }
+    }); 
+  </script>
+  <style>
+    
+    @import '';
+    * {
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+    body {
+      background: purple;
+      font-family: "Overpass", "Interstate", "Helvetica", sans-serif;
+    }
+    #map {
+      width: 100%;
+      height: 700px;
+    }
+
+    .leaflet-container {
+      background: pink !important;
+    }
+    
+    .leaflet-container {
+      font: 1.6em/1.5 "Overpass", Arial, Helvetica, sans-serif;
+    }
+    
+    .leaflet-control-container {
+      display: none;
+    }
+
+    div#map:before {
+      content: '{{map-location}}';
+      font-weight: 400;
+      left: 51%;
+      top: 50%;
+      transform: translate(0%,-50%);
+      text-align: center;
+      z-index: 100;
+      position: absolute;
+      line-height: 16em;
+    }
+
+    div#map:after {
+      content: '•';
+      color: #AC0D1F;
+      text-align: center;
+      z-index: 100;
+      font-size: 2em;
+      width: 100%;
+      position: absolute;
+      line-height: 8em;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+    }
+  </style>
+</head>
+<body>
+  <div class="map">
+    <div class="map-hit-target" data-map-value="{{map-location}}"></div>
+    <div id="map"></div>
+  </div><!--map-->
+  <script>
+
+  </script>
+</body>
+</html>
