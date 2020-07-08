@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html async>
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  <style>
+    .page {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: {{{ newsletter-fallback-color }}};
+      opacity: {{{ background-opacity }}};
+      background-image: url('{{{ background-image }}}');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      mix-blend-mode: multiply;
+      z-index: 1;
+    }
+    
+    .background-colour {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: {{{ newsletter-fallback-color }}};
+      z-index: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="background-colour"></div><!--bc-->
+  <div class="page"></div><!--page-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script>
+    setTimeout(function(){
+      document.dispatchEvent(new Event('printready'))  
+    },2000)
+  </script>
+</body>
+</html>
