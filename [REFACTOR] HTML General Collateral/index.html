@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>General Collateral</title>
+    <meta charset="utf-8">
+    <!-- Red Hat Brand Font -->      
+    <link href='//overpass-30e2.kxcdn.com/overpass.css' rel='stylesheet' />
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>  
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>    
+    <script src="main.js"></script>
+    <!-- STYLES FOR COPY CLIPBOARD -->
+    <style>
+      .hideOutfit {
+        display: none !important;
+      }
+      
+      #selections .content-wrapper {
+        padding: 53px;
+      }
+      
+      html, :root {
+        background: white;
+        font-size: 100%;
+        line-height: 1.5;  
+        font-family: "Overpass", "Interstate", "Helvetica", sans-serif;
+        counter-reset: pagenumber;
+        color: #57595b;
+        font-weight: 300;
+      }
+       .dynamic-content {
+      display: block;
+  }
+  .copy-overlay {
+      background: #eee;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+  }
+
+  .copy-content {
+      margin: 0 auto;
+      text-align: center;
+      background: #eee;
+      padding: 2em;
+  }
+
+  .copy-content div {
+      padding: 0 0 2em 0;
+  }
+
+  .btn-red {
+      background-color: #c00;
+      color: #fff;
+      display: inline-block;
+      border: none;
+      font-family: "Overpass", "Interstate", "Helvetica", sans-serif;
+      font-size: 1rem;
+      padding: 0.4rem 2rem;
+      font-weight: bold;
+      text-decoration: none;
+      text-transform: uppercase;
+  }      
+    </style>   
+  </head>
+
+  <body class="">
+    <div class="js-exports"></div>
+    
+    <div id="resource">
+    <div id="selections" class="dynamic-content">
+      <!-- Styles that need to be included on the Clipboard -->
+    <style> 
+      /*	NOTE	NOTE	NOTE	NOTE	NOTE	NOTE	NOTE	NOTE	NOTE	NOTE	NOTE	*\
+      *
+      *
+      *	 	ALL STYLES IN THIS TEMPLATE ARE PREFIXED TO ENSURE NO STYLE CONFLICTS 
+      *		THIS IS BECAUSE THIS TEMPLATE CODE WILL END UP IN RED HAT DRUPAL CSM
+      *
+      *
+      *	NOTE	NOTE	NOTE	NOTE	NOTE	NOTE	NOTE	NOTE	NOTE	NOTE	NOTE	NOTE*/
+/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */ /* Document ========================================================================== */ /** * 1. Correct the line height in all browsers. * 2. Prevent adjustments of font size after orientation changes in iOS. */ html {line-height: 1.15; /* 1 */ -webkit-text-size-adjust: 100%; /* 2 */ } /* Sections ========================================================================== */ /** * Remove the margin in all browsers. */ body {margin: 0; } /** * Correct the font size and margin on `h1` elements within `section` and * `article` contexts in Chrome, Firefox, and Safari. */ h1 {font-size: inherit; margin: 0; } /* Grouping content ========================================================================== */ /** * 1. Add the correct box sizing in Firefox. * 2. Show the overflow in Edge and IE. */ hr {box-sizing: content-box; /* 1 */ height: 0; /* 1 */ overflow: visible; /* 2 */ } /** * 1. Correct the inheritance and scaling of font size in all browsers. * 2. Correct the odd `em` font sizing in all browsers. */ pre {font-family: monospace, monospace; /* 1 */ font-size: 1em; /* 2 */ } /* Text-level semantics ========================================================================== */ /** * Remove the gray background on active links in IE 10. */ a {background-color: transparent; } /** * 1. Remove the bottom border in Chrome 57- * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari. */ abbr[title] {border-bottom: none; /* 1 */ text-decoration: underline; /* 2 */ text-decoration: underline dotted; /* 2 */ } /** * Add the correct font weight in Chrome, Edge, and Safari. */ b, strong {font-weight: bolder; } /** * 1. Correct the inheritance and scaling of font size in all browsers. * 2. Correct the odd `em` font sizing in all browsers. */ code, kbd, samp {font-family: monospace, monospace; /* 1 */ font-size: 1em; /* 2 */ } /** * Add the correct font size in all browsers. */ small {font-size: 80%; } /** * Prevent `sub` and `sup` elements from affecting the line height in * all browsers. */ sub, sup {font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } sub {bottom: -0.25em; } sup {top: -0.5em; } /* Embedded content ========================================================================== */ /** * Remove the border on images inside links in IE 10. */ img {border-style: none; } /* Forms ========================================================================== */ /** * 1. Change the font styles in all browsers. * 2. Remove the margin in Firefox and Safari. */ button, input, optgroup, select, textarea {font-family: inherit; /* 1 */ font-size: 100%; /* 1 */ line-height: 1.15; /* 1 */ margin: 0; /* 2 */ } /** * Show the overflow in IE. * 1. Show the overflow in Edge. */ button, input { /* 1 */ overflow: visible; } /** * Remove the inheritance of text transform in Edge, Firefox, and IE. * 1. Remove the inheritance of text transform in Firefox. */ button, select { /* 1 */ text-transform: none; } /** * Correct the inability to style clickable types in iOS and Safari. */ button, [type="button"], [type="reset"], [type="submit"] {-webkit-appearance: button; } /** * Remove the inner border and padding in Firefox. */ button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner, [type="submit"]::-moz-focus-inner {border-style: none; padding: 0; } /** * Restore the focus styles unset by the previous rule. */ button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring {outline: 1px dotted ButtonText; } /** * Correct the padding in Firefox. */ fieldset {padding: 0.35em 0.75em 0.625em; } /** * 1. Correct the text wrapping in Edge and IE. * 2. Correct the color inheritance from `fieldset` elements in IE. * 3. Remove the padding so developers are not caught out when they zero out *    `fieldset` elements in all browsers. */ legend {box-sizing: border-box; /* 1 */ color: inherit; /* 2 */ display: table; /* 1 */ max-width: 100%; /* 1 */ padding: 0; /* 3 */ white-space: normal; /* 1 */ } /** * Add the correct vertical alignment in Chrome, Firefox, and Opera. */ progress {vertical-align: baseline; } /** * Remove the default vertical scrollbar in IE 10+. */ textarea {overflow: auto; } /** * 1. Add the correct box sizing in IE 10. * 2. Remove the padding in IE 10. */ [type="checkbox"], [type="radio"] {box-sizing: border-box; /* 1 */ padding: 0; /* 2 */ } /** * Correct the cursor style of increment and decrement buttons in Chrome. */ [type="number"]::-webkit-inner-spin-button, [type="number"]::-webkit-outer-spin-button {height: auto; } /** * 1. Correct the odd appearance in Chrome and Safari. * 2. Correct the outline style in Safari. */ [type="search"] {-webkit-appearance: textfield; /* 1 */ outline-offset: -2px; /* 2 */ } /** * Remove the inner padding in Chrome and Safari on macOS. */ [type="search"]::-webkit-search-decoration {-webkit-appearance: none; } /** * 1. Correct the inability to style clickable types in iOS and Safari. * 2. Change font properties to `inherit` in Safari. */ ::-webkit-file-upload-button {-webkit-appearance: button; /* 1 */ font: inherit; /* 2 */ } /* Interactive ========================================================================== */ /* * Add the correct display in Edge, IE 10+, and Firefox. */ details {display: block; } /* * Add the correct display in all browsers. */ summary {display: list-item; } /* Misc ========================================================================== */ /** * Add the correct display in IE 10+. */ template {display: none; } /** * Add the correct display in IE 10. */ [hidden] {display: none; }
+
+      #selections img {
+        display: block;
+        max-width: 100%;
+      }
+      #selections .image img {
+        margin: 0 auto;
+      }
+      #selections .no-number {
+        list-style: none;
+      }
+
+
+#selections p {
+  line-height: inherit;
+  font-size: 1em;
+  color: #58595b;
+}
+
+#selections html, :root {
+  font-size: 16px;
+  line-height: 1.15;
+  /*text-rendering: geometricPrecision;*/}
+
+#selections body {
+  counter-reset: pagenumber;
+  color: #57595b;
+  font-weight: 300 }
+
+#selections h1, 
+#selections h2, 
+#selections h3, 
+#selections h4, 
+#selections h5, 
+#selections h6 {
+  text-transform: uppercase;
+  margin-bottom: 0.7em; }
+#selections h1:first-child, 
+#selections h2:first-child, 
+#selections h3:first-child, 
+#selections h4:first-child, 
+#selections h5:first-child, 
+#selections h6:first-child {
+  margin-top: 0; }
+
+
+#selections h4, 
+#selections h5, 
+#selections h6 {
+  color: #57595b;
+}
+
+#selections h1,
+#selections h2 { 
+  font-size: 1.2em;
+  margin: 0.83em 0;
+}
+#selections h3 { 
+  font-size: 1.17em;
+  margin: 1em 0;
+  color: #58595b;
+}
+#selections h4 { 
+  font-size: 1em;
+  margin: 1.33em 0 0;
+  text-transform: initial !important; 
+  color: #58595b;
+}
+#selections h5 {
+  margin: 1.67em 0 0.7em;
+  text-transform: uppercase;
+  color: #58595b;
+}
+#selections h6 { 
+  font-size: 0.667em; 
+  margin: 0 0 0.7em;
+  text-transform: uppercase;
+  color: #58595b;
+}
+
+
+#selections blockquote {
+  font-size: 1.5em;
+  line-height: 1.4em;
+  font-style: italic;
+  margin: 0;
+  margin-bottom: 0.7em }
+
+#selections blockquote:before, 
+#selections blockquote:after {
+  content: '"';
+  font-size: 1.25em;
+  line-height: 1em; 
+}
+
+#selections small { font-size: 8pt !important; line-height: 1.4em; }
+
+#selections cite {
+  font-size: 0.7em;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  font-style: normal; }
+#selections cite p { margin: 0; }
+
+
+#selections li > ul { 
+    padding: 0 0 0 1.2rem;
+}
+#selections ul {
+    list-style: none;
+    padding: 0;
+}
+#selections li { margin: 0.7em 0; }
+
+#selections ol {
+  padding: 0 0 0 1.2rem;
+}
+
+#selections ul li:before {
+  content: "\25CB";
+  width: 15px;
+  height: auto;
+  margin: 0 1rem 0 0;
+}
+
+#selections hr {
+  background: none;
+  border: none;
+  border-bottom: 1px solid;
+  margin-top: 1.4em;
+  margin-bottom: 1.4em; }
+
+#selections strong { font-weight: 700 !important } 
+
+      /*******************/
+      /* OVERFLOW STLYES */
+      /*******************/
+      #selections .overflow {
+        position: relative;
+      }
+      #selections .overflow * { 
+        color: red !important;
+      }
+
+      #selections .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 5px;
+        right: 5px;
+        height: 15px;
+        width: 15px;
+        border: 1px solid red;
+        color: red;
+        padding: 2px 2px 2px 3px;
+        box-sizing: border-box;
+        font-size: 13px;
+        text-align: center;
+        line-height: 8px;
+        background-color: white;
+        text-align: center;
+      }
+      #selections .overflow:hover:before {
+        background-color: red;
+        color: white;
+      }
+      #selections .overflow:after {
+        display: none;
+      }
+      #selections .overflow:hover:after {
+        display: block;
+        content: "There is too much content for this section. Please increase the amount of content you have to resolve this problem.";
+        position: absolute;
+        top: 25px;
+        right: 5px;
+        background-color: black;
+        color: white;
+        border-radius: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+		
+      
+      /********************************/
+      /* REFACTOR START 22/01/19 - LM */
+      /* Start STRUCTURE */
+      #selections {
+        box-sizing: border-box;
+        background: white;
+      }
+      #selections *, 
+      #selections *:before, 
+      #selections *:after {
+        box-sizing: inherit;
+      }
+
+      #selections p, 
+      #selections ul, 
+      #selections dl, 
+      #selections ol { margin: 0 0 1em; }
+      
+      #selections .page {
+        margin: 0 0 2em;
+      }
+      
+      /* TABLE STYLES */
+      #selections table {
+         border-collapse: collapse; 
+        font-size: 10pt;
+        color: #58595b;
+        border-spacing: 0;
+        width: 100%;
+        border-bottom: 1px solid;
+        margin: 10pt 0;
+      }
+      #selections .page-content table tr:first-child td {
+        padding: 11px 0;
+        border-bottom: 1px solid rgb(88, 89, 91);
+      }
+      #selections .page-content table tr td {
+        padding: 7px;
+        border: 0;
+      }
+      #selections .page-content table tr:nth-child(2n+3) td {
+        background: #e6e7e8;
+      }
+      #selections .page-content table h1 {
+        margin: 0;
+        color: rgb(88, 89, 91);
+        line-height: 1.35;
+      }
+      
+      /* START GLOBAL STYLES */   
+      /* START SIDE BAR STYLES */
+      #selections .sidebar {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+		padding: 0 0 1.5em;
+        color: #58595b;
+      }
+      #selections .sidebar-content {
+        padding-top: 1em;
+      }
+      #selections .sidebar-content:first-child {
+        padding-top: 0;
+      }   
+
+      #selections .sidebar-quote h2 {
+        font-size: 11pt;
+        font-weight: 300;
+        font-style: italic;
+        line-height: 1.2;
+        text-transform: none;
+        text-align: right;
+      }
+      #selections .sidebar-quote p {
+        font-size: 0.8em;
+        text-align: right;
+        text-transform: uppercase;
+      }
+      #selections .sidebar p {
+        margin: 0 0 0.7em;
+      }
+      
+      /* MAIN CONTENT STYLES */
+      #selections .main {
+        color: #58595b;
+      }
+      #selections .content-wrapper .guide {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+      }
+      #selections .page-content {
+        display: flex;
+        flex-flow: column nowrap;
+      }
+      #selections .page-content h1 {
+        color: #cc0000;
+        font-weight: 700;
+      }
+      #selections .page-content h2 {
+        color: #58595b;
+        font-weight: 700;
+      }
+
+     #selections .page-content td {
+        font-size: 8pt;
+        padding: 5pt;
+      }
+      
+      /* IMAGE CONTENT STYLES */
+      #selections .content-image {
+        margin: 14px 0;
+        padding: 14px;
+        background: rgb(230, 231, 232);
+      }
+      #selections .content-image .caption {
+        border-top: 1px solid rgb(87, 89, 91);
+        margin-top: 14px;
+        padding-top: 4px;
+      }
+      #selections .caption p {
+        margin: 0;
+        font-size: 8pt;
+        font-style: italic;
+        margin: 0;
+      }
+      
+      /* Footnote Styles */
+      #selections .page-content__footnotes {
+        margin: 2rem 0;
+      }
+      /* JS Footnote Update Styles  15/10 - LM */
+      #selections .hidden {
+        display: none;
+      }
+
+      #selections .footnote {
+        font-size: 0.8em;
+        font-style: italic;
+        border-top: 1px solid #828384;
+        margin: 3px 0 14px;
+      }
+      #selections .footnote.overflow {
+        position: absolute;  
+      }      
+
+      /* Footer Styles */
+      #selections footer {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: stretch;
+        padding: 14px 0 0;
+      }
+      #selections footer .website {
+        flex: 1 0 23%;
+        padding: 0 1.5em 0 0;
+        font-size: 11px;
+        font-weight: 700;
+        text-align: right;
+      }
+      #selections footer .right__content {
+        flex: 1 1 74%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+      }
+      #selections .right__content-text {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+        font-size: 10px;
+        line-height: 1.6;        
+      }
+      #selections .footer__title {
+        margin: 0;
+      }
+      #selections .footer__contentType {
+        font-weight: 700; 
+        margin: 0 6px 0 0;
+      }
+      #selections footer .number {
+        text-align: right;
+        flex: 1 0 auto;
+      }
+     #selections footer .number:before {
+        counter-increment: pagenumber;
+        content: counter(pagenumber);
+      }   
+      
+      /* Last Page Styles */
+      #selections .last__footer {
+        display: flex;
+        flex-flow: row nowrap;
+      }
+      #selections .last__footer .social__wrapper {
+        line-height: 0;
+      }
+      #selections .last__footer .link__wrapper {
+        padding: 5px 0 0;
+      }
+
+      #selections .about__redhat {
+        margin: 0 0 11px;
+      }
+      #selections .about__redhat h2 {
+        color: #58595b;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      #selections .about__redhat p {
+        line-height: 1.25;
+      }
+      #selections .office__wrapper {
+        display: flex;
+        flex-flow: row wrap;
+        border-top: 1px solid #828384;
+        padding: 5px 0 0;
+      }
+      #selections .office {
+        flex: 1 1 25%;
+        padding: 0 11px 0 0;
+        margin: 0 0 16px;
+      }
+      #selections .office p {
+        line-height: 1.45;
+      }
+      
+      /* MEDIA QUERIES */
+      @media (min-width: 768px) {
+        #selections .sidebar {
+          flex: 1 1 23%;
+          padding: 0 1.5em 0 0;          
+        }
+        #selections .page-content {
+          flex: 1 1 74%;
+        }
+        #selections .content-wrapper .guide {
+          flex-flow: row nowrap;
+        }
+      }      
+    </style>       
+    {{#collection.RH_general-collateral--cs}}
+    {{#block.RH_front-page--cs}}
+    <div class="cover-page page"><!-- Start Cover Page -->
+      <div class="content-wrapper"><!-- Start Content-Wrapper -->
+        <div class="guide"><!-- Start Guide -->
+            <div class="sidebar js-height-calculator-container"><!-- Start Sidebar -->
+              <div data-max-height="" class="js-height-calculator-target">
+                {{#collection.RH_sidebar-content--cs}}                        
+                {{#block.RH_content--cs}}
+                <div class="sidebar-content">
+                  {{{ RH_content--cs }}}
+                </div> <!-- sidebar-content -->
+                {{/block.RH_content--cs}}
+                {{/collection.RH_sidebar-content--cs}}
+              </div><!-- end data-max-height -->
+              
+            </div><!-- End Sidebar -->
+
+          	
+            <div class="page-content js-height-calculator-container"><!-- Start Page-Content -->
+                <div class="main"><!-- Start Main -->
+                  <div data-max-height="" class="js-height-calculator-target">
+                    {{#collection.RH_mainContent}}
+                      {{#block.main-content--gc}}
+                      <div class="content-rich">
+                        {{{ RH_main-content--gc }}}
+                      </div>
+                      {{/block.main-content--gc}}
+                      {{ #block.image-section }}
+                      <div class="content-image">
+                        <div class="image">
+                            <img src="{{{ image }}}" />
+                        </div>
+                        {{#caption}}
+                          <div class="caption"><p>{{{ caption }}}</p></div>
+                        {{/caption}}
+                      </div><!--content-image-->
+                      {{ /block.image-section }}
+
+                      {{ #block.table-section }}
+                    <div class="table-content">
+                    	{{{table-content}}}
+                    </div>
+                      {{ /block.table-section }}
+                    {{/collection.RH_mainContent}}
+                  </div><!-- end data-max-height -->
+                </div><!-- End Main -->
+
+                  {{#collection.RH_footnotes--cs}}
+                  <div class="footnote__container">
+                    <div class="footnote" data-max-line="2">
+                      {{{ RH_footnote--cs }}}
+                    </div><!-- end innerFootnote -->
+                  </div><!-- end footnote__container -->
+                  {{/collection.RH_footnotes--cs}}
+            </div><!-- End page-content-->
+          </div><!-- End Guide -->
+      </div><!-- End Content-Wrapper -->
+    </div><!-- END COVER PAGE --> 
+    {{/block.RH_front-page--cs}}
+    {{#block.RH_internal-page--cs}}
+    <!-- Start Internal Page -->
+    <div class="page internal-page">
+      <div class="content-wrapper">
+              <div class="guide">
+                  <div class="sidebar js-height-calculator-container">
+                    <div data-max-height="" class="js-height-calculator-target">
+                    {{#collection.RH_sidebar-content--cs}}                        
+                      {{#block.RH_content--cs}}
+
+                        {{#RH_quote--cs}}
+                        <div class="sidebar-quote">
+                          {{{ RH_quote--cs }}}
+                        </div>
+                        {{/RH_quote--cs}}
+
+                        {{#RH_content--cs}}
+                        <div class="sidebar-content">
+                          {{{ RH_content--cs }}}
+                        </div>
+                        {{/RH_content--cs}}
+
+                      {{/block.RH_content--cs}}
+                    {{/collection.RH_sidebar-content--cs}}
+                    </div><!-- end data-max-height -->
+                  </div><!-- End Sidebar -->
+
+                  <div class="page-content js-height-calculator-container">
+                      <div class="main">
+                        <div data-max-height="" class="js-height-calculator-target">
+                          {{#collection.RH_mainContent}}
+                            {{#block.main-content--gc}}
+                            <div class="content-rich">
+                              {{{ RH_main-content--gc }}}
+                            </div>
+                            {{/block.main-content--gc}}
+                            {{ #block.image-section }}
+                            <div class="content-image">
+                              <div class="image">
+                                  <img src="{{{ image }}}" />
+                              </div>
+                              {{#caption}}
+                                <div class="caption"><p>{{{ caption }}}</p></div>
+                              {{/caption}}
+                            </div><!--content- image-->
+                            {{ /block.image-section }}
+
+                            {{ #block.table-section }}
+                          <div class="table-content">
+                              {{{table-content}}}
+                          </div>
+                            {{ /block.table-section }}
+                          {{/collection.RH_mainContent}}
+                        </div><!-- end data-max-height -->
+                      </div><!-- End Main -->
+
+                        {{#collection.RH_footnotes--cs}}
+                        <div class="footnote__container">
+                          <div class="footnote" data-max-line="2">
+                            {{{ RH_footnote--cs }}}
+                          </div><!-- end innerFootnote -->
+                        </div><!-- end footnote__container -->
+                        {{/collection.RH_footnotes--cs}}
+            </div><!--page-content-->
+            </div><!-- End Guide -->
+          </div><!--content-wrapper-->       
+    </div><!-- End Page -->
+    {{/block.RH_internal-page--cs}}
+    {{#block.RH_last-page--cs}}
+    <div class="page last-page">
+      <div class="content-wrapper">
+              <div class="guide">
+                  <div class="sidebar js-height-calculator-container">
+                    <div data-max-height="" class="js-height-calculator-target">
+                    {{#collection.RH_sidebar-content--cs}}                        
+                      {{#block.RH_content--cs}}
+
+                        {{#RH_quote--cs}}
+                        <div class="sidebar-quote">
+                          {{{ RH_quote--cs }}}
+                        </div>
+                        {{/RH_quote--cs}}
+
+                        {{#RH_content--cs}}
+                        <div class="sidebar-content">
+                          {{{ RH_content--cs }}}
+                        </div>
+                        {{/RH_content--cs}}
+
+                      {{/block.RH_content--cs}}
+                    {{/collection.RH_sidebar-content--cs}}
+                    </div><!-- end data-max-height -->
+                </div><!-- End Sidebar -->
+
+                  <div class="page-content js-height-calculator-container">
+                      <div class="main">
+                        <div data-max-height="" class="js-height-calculator-target">
+                          {{#collection.RH_mainContent}}
+                            {{#block.main-content--gc}}
+                            <div class="content-rich">
+                              {{{ RH_main-content--gc }}}
+                            </div>
+                            {{/block.main-content--gc}}
+                            {{ #block.image-section }}
+                            <div class="content-image">
+                              <div class="image">
+                                  <img src="{{{ image }}}" />
+                              </div>
+                              {{#caption}}
+                                <div class="caption"><p>{{{ caption }}}</p></div>
+                              {{/caption}}
+                            </div><!--content-collection-->
+                            {{ /block.image-section }}
+
+                            {{ #block.table-section }}
+                          <div class="table-content">
+                              {{{table-content}}}
+                          </div>
+                            {{ /block.table-section }}
+                          {{/collection.RH_mainContent}}
+                        </div><!-- end data-max-height -->
+                      </div><!-- End Main -->
+                    
+                        {{#collection.RH_footnotes--cs}}
+                        <div class="footnote__container">
+                          <div class="footnote" data-max-line="2">
+                            {{{ RH_footnote--cs }}}
+                          </div><!-- end innerFootnote -->
+                        </div><!-- end footnote__container -->
+                        {{/collection.RH_footnotes--cs}}
+                  </div><!--page-content-->
+            </div><!-- End Guide -->
+        </div><!-- End Content-Wrapper -->
+      </div><!-- page -->
+    {{/block.RH_last-page--cs}}
+    {{/collection.RH_general-collateral--cs}}
+    </div><!-- End SELECTIONS -->
+  </div><!-- End RESOURCE -->
+</body>
+</html>
