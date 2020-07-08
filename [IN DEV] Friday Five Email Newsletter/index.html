@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="generator" content="HTML Tidy for Linux/x86 (vers 25 March 2009), see www.w3.org">
+<title>Red Hat</title>
+
+<style type="text/css">
+
+body {background-color: #eeeeee; margin: 0px; width: 100% !important;}
+
+#wrapper {margin:20px auto;}
+
+
+body, table, p, li, ul {font-family: liberation sans, verdana, arial, helvetica, lucida, sans-serif; color: rgb(51, 51, 51);}
+
+p, li {font-size: 10pt; line-height: 18px;}
+
+a:link, a:visited {color: #cc0000; text-decoration: none;}
+
+h2 {color: #000000; font-size: 15pt;} .footer { font-family: liberation sans, verdana, arial, helvetica, lucida, sans-serif; color: #666666; font-size: 7pt; }
+
+@media only screen and (max-width: 600px) {
+    body {
+        background-color: lightblue;
+    }
+}
+ @media only screen and (max-width: 500px) {
+    .footerTD {
+        float: left;
+    }
+}
+
+</style>
+</head>
+<body>
+      <table width="640" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:640px; width:100%;" bgcolor="#FFFFFF">
+        <!-- Start Header Rows -->
+        <tr>
+            <td align="center" valign="top">
+                <table width="600" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:640px; width:100%;">
+                  <tbody>
+                    <tr>
+                        <td align="center" valign="top" style="padding: 0 0 14px 0;">
+                            <img src="http://images.engage.redhat.com/EloquaImages/clients/RedHat/{fb23b551-375f-46d8-9f23-39a6602db5b9}_friday_five.png" height="93" width="100%" border="0" alt="Friday Five" />
+                        </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr class="header">
+            <td align="left" valign="top" style="padding: 0 20px 20px 20px">
+                <p><b>{{friday-five-date}}</b></p>
+                <p><b>The week's top news and ideas for Red Hat<sup>&reg;</sup> associates to read and share.</b></p>
+                <img src="http://images.engage.redhat.com/EloquaImages/clients/RedHat/{701497da-dcfb-4143-a76e-2f88e97c4f63}_friday_five-bar.png" width="100%" height="15">              
+            </td>
+        </tr>
+        <!-- /end Header Rows -->
+
+        <!-- Start Body Rows -->
+        <tr class="body">
+            <td align="left" valign="top" style="padding: 0 20px 0 20px">
+                <!-- Start Content Block -->
+                {{#collection.friday-five-EDM}}
+              	{{#block.friday-five-block}}
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tbody>
+                    <tr>
+                        <!-- Number -->
+                        <td style="padding: 0 0 20px 0;" align="left" valign="top">
+                            <img src="{{{ friday-five-EDM-block-number }}}" max-width="100%" width="100" height="100" />
+                        </td>
+                        <!-- Support Graphic -->
+                        <td style="padding: 0 0 20px 0;" align="right" valign="top">
+                            <a style="display: block;" href="{{{ friday-five-EDM-image-link }}}">
+                              <img src="{{{ friday-five-EDM-image }}}" max-width="100%" width="150" height="100" />
+                            </a>
+                        </td>
+                    </tr>
+                    <!-- Tagline -->
+                    <tr>
+                        <td colspan="2" align="left" valign="top">
+                            <p style="margin: 0; font-weight: 700; color: #646464;">{{{ friday-five-EDM-intro-title }}}</p>
+                            <p style="margin: 0; padding: 0 0 30px;">{{{ friday-five-EDM-intro-copy }}}</p>
+                        </td>
+                    </tr>
+                    <!-- End Tagline -->
+                    <!-- Main Content -->
+                    <tr>
+                        <td style="padding: 0 0 18px;" colspan="2" align="left" valign="top">
+                            {{{ friday-five-EDM-body-copy }}}
+                        </td>
+                    </tr>
+                    <!-- End Main Content -->
+                  
+                    <!-- Learn More Button -->
+                    {{#friday-five-EDM-learn-more-link}}
+                    <tr>
+                        <td style="padding: 0 0 10px;" align="left" valign="middle">
+                            <a class="display: block;" href="{{{ friday-five-EDM-learn-more-link}}}" target="_blank">
+                                <img src="http://images.engage.redhat.com/eloquaimages/clients/RedHat/{dec11fb4-9f77-437f-9359-ed2794a513fc}_learn.gif" />
+                            </a>
+                        </td>
+                    </tr>
+                    {{/friday-five-EDM-learn-more-link}}
+                  <!-- /end More Button -->
+                  <!-- Start Social Shares -->
+                    <tr>
+                      <td align="left" valign="middle">
+                      	<p><font color="#cc0000"><b style="padding: 0 0 5px;">SHARE&nbsp;IT!</b><br></font>
+                          {{#friday-five-EDM-fb-link}}<a style="display: inline-block;" href="{{{ friday-five-EDM-fb-link }}}" target="_blank"><img src="http://images.engage.redhat.com/EloquaImages/clients/RedHat/{0b370d4e-a804-426a-82d8-ca1272b9d2af}_friday_five-fb.png" height=17 width=17 border=0></a>&nbsp;{{/friday-five-EDM-fb-link}}
+                          {{#friday-five-EDM-tw-link}}<a style="display: inline-block;" href="{{{ friday-five-EDM-tw-link }}}" target="_blank"><img src="http://images.engage.redhat.com/EloquaImages/clients/RedHat/{e5a377e3-e029-4830-9fb9-a467e6de81a4}_friday_five-tw.png" height=17 width=17 border=0></a>&nbsp;{{/friday-five-EDM-tw-link}}
+                          {{#friday-five-EDM-li-link}}<a style="display: inline-block;" href="{{{ friday-five-EDM-li-link }}}" target="_blank"><img src="http://images.engage.redhat.com/EloquaImages/clients/RedHat/{27fe9a0c-4404-49f7-9faa-fd3854e5f078}_friday_five-ln.png" height=17 width=17 border=0></a>{{/friday-five-EDM-li-link}}
+                         </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 0 0 18px;" colspan="2">
+                        <hr/>
+                      </td>
+                    </tr>
+                    <!-- /end Social Shares -->
+                  </tbody>
+                </table>
+                <!-- /end Content Block -->
+                {{/block.friday-five-block}}
+                {{/collection.friday-five-EDM}}
+            </td>
+        </tr>
+        <!-- /end Body Rows -->
+        <!-- Start Footer Row -->
+        <tr>
+            <td style="padding: 0 20px 0 20px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr valign=top>
+                  <td class="footerTD" style="padding: 0 0 33px 0;" width=50%>
+                    <p><b>Have an idea for a future Friday Five?</b><br>
+                    Email us at <a href="mailto:marketing@redhat.com" target="_blank">marketing@redhat.com</a>.
+                    </p>
+                  </td>
+                  <td class="footerTD" style="padding: 0 0 33px 0;">
+                    <p>
+                    <b>Want more Red Hat content?</b><br>
+                    <a href="http://red.ht/1qxGsE7" target="_blank">Subscribe to Red Hat's corporate newsletter</a> // <a href="http://red.ht/1Fh9KZ7" target="_blank">Business insights</a> // <a href="http://red.ht/1N0DbFk" target="_blank">News</a> // <a href="http://red.ht/1N0DfF2" target="_blank">Newsroom RSS feed</a> // <a href="http://red.ht/1hRTRne" target="_blank">Videos</a> // <a href="http://red.ht/1hRU21N" target="_blank">Customer success stories</a> // <a href="http://red.ht/1KpruJi" target="_blank">Upcoming events</a> // <a href="http://red.ht/1EzWO60" target="_blank">Friday Five archives</a>
+                    </p>
+                    <p>
+<b>For Red Hat associates:</b><br>
+<a href="http://red.ht/1KEqobo" target="_blank">Media-monitor news list</a> // <a href="http://bit.ly/1U45yaf" target="_blank">Events calendar</a> // <a href="http://sforce.co/1NJFgWU" target="_blank">Customer reference database</a> 
+</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+        </tr>
+        <!-- End Footer Row -->
+    </table>                  
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
