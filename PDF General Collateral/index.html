@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html data-sign="OS?">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    {{{account.snippets.design-system-link}}}
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Circular/stylesheet.css');
+
+      html {
+        font-family: "Circular";
+        font-size: 11pt;
+        color: #000;
+      }
+      .js-heading-src, .js-img-src {
+        display: none;
+      }
+      p {
+        font-size: 1em;
+      }
+      .page {
+        border-bottom: 5px solid var(--grey);
+      }
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }        
+      .fit {
+        padding: 0.91em 1.15em;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+      a {
+        text-decoration: none;
+        color: #555F61;
+      }
+      strong {
+        font-weight: 700;
+      }
+      p:last-child {
+        margin-bottom: 0.75em;
+      }
+      ul li {
+        margin-bottom: 0.75em;
+        line-height: 1.5em;
+      }
+      
+      /* Header content */
+      .redhatLogo {
+        font-size: 0.385em !important;
+        margin: 0;
+      }
+      .header-content {
+        margin-bottom: 1.19em;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      .logo {
+        max-height: 1.17em;
+      }
+      .brief-text {
+        font-size: 0.175em;
+        color: var(--red);
+      }
+      
+      /* Title content */
+      h1 {
+        font-size: 0.675em;
+        color: var(--red);
+        line-height: 1.1em;
+        letter-spacing: 0.013em;
+        margin: 0;
+      }
+      h2 {
+        font-weight: 400;
+        font-size: 0.29em;
+        color: var(--red);
+        letter-spacing: 0.013em;
+      }
+      .title-content {
+        margin-bottom: 0.6em;
+      }
+      
+      /* Page content */
+      .page-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex: 1;
+      }
+      .page-content h2, .page-content h3, .page-content h4, .page-content h5, .page-content h6 {
+        font-family: 'Red Hat Text', sans-serif;
+      }
+       
+      /* Front page Sidebar */
+      .front-page .sidebar p, .front-page .sidebar h2 {
+        text-align: left;
+      }
+      .brackets {
+        margin-top: -0.05em;
+        margin-bottom: 0.15em;
+      }
+      .brackets svg {
+        width: 1.2em;
+      }
+      .brackets.hide {
+        display: none;
+      }
+      .sidebar {
+        max-width: 23.2%;
+        margin-right: 0.375em;
+        position: relative;
+      }
+      .sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5, .sidebar h6 {
+        font-size: 0.22em;
+        font-weight: 700;
+        letter-spacing: 0;
+        margin-bottom: 0.5em;
+      }
+      .sidebar p {
+        font-size: 0.2em;
+        margin-bottom: 1.75em;
+      }
+      .sidebar ul {
+        font-size: 0.2em;
+        color: var(--grey);
+      }
+      .footer-block {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+      .footer-block a, .footer-block .social-icon {
+        display: inline-block;
+      }
+      .footer-block .social-icon {
+        width: 0.45em;
+      }
+      .footer-block {
+        text-align: right;
+      }
+      .social-links a {
+        font-size: 0.185em;
+        display: block;
+        color: var(--grey);
+      }
+      .social-icons {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .social-icons img {
+        margin-left: 0.075em;
+      }
+      .social-icons a {
+        margin-left: initial;
+      }
+      .footer-text {
+        font-weight: 500;
+        margin-top: 1em;
+      }
+      .footer-text {
+        font-size: 0.185em;
+        color: var(--grey);
+        font-weight: 500;
+      }
+      .footer-text a {
+        color: var(--grey);
+      }
+      
+      /* Internal page */
+      .internal-page .page-content {
+        margin-top: 1.9em;
+      }
+      
+      /* Internal page Sidebar */
+      
+      .internal-page .sidebar {
+        text-align: right;
+      }
+      .building {
+        display: inline-block;
+        max-width: 0.8em;
+      }
+      .building.hide {
+        display: none;
+      }
+      .internal-page .sidebar p {
+        line-height: 1.12em;
+        margin-bottom: 0.75em;
+      }
+      .internal-page .text-block:first-of-type {
+        margin-top: -0.19em;
+      }
+      .internal-page .text-block:not(:first-of-type) {
+        border-top: 1px solid var(--grey);
+        padding-top: 0.15em;
+      }
+      
+      /* Main Text content */
+      .main-content {
+        font-size: 0.2em;
+        position: relative;
+      }
+      .main-content h2 {
+        font-size: 1.31em;
+        color: var(--red);
+        font-weight: 700;
+      }
+      .main-content h3 {
+        font-size: 1.21em;
+        margin-bottom: 0.7em;
+        padding-top: 0.2em;
+        font-weight: 700;
+        color: var(--red);
+      }
+      
+      /* Call to Action */
+      .call-to-action {
+        background: var(--red);
+        display: block;
+        font-weight: 700;
+        padding: 0.3em 0.6em;
+        margin-top: 1.5em;
+        color: white;
+        font-size: 1.1em;
+      }
+      
+      /* Copyright */
+      .copyright-text {
+        position: absolute;
+        bottom: 0;
+        font-size: 0.75em;
+      }
+      
+      /* Footnotes */
+      .footnote {
+        padding-left: 0;
+        padding-top: 2em;
+        color: #000;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      {{#placeholder-image-1}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      {{/placeholder-image-1}}
+    </div><!-- end placeholderMaster -->
+    
+    <div class="js-heading-src">{{{ type }}}</div>
+    <img src="{{ general-collateral-logo }}" class="js-img-src" />
+    
+    {{#collection.RH_general-collateral--cs}}
+    {{#block.RH_front-page--cs}}
+    <div class="page front-page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+          <div class="header-content">
+            <img src="" class="logo js-img-target" />
+            <span class="brief-text js-heading-target"></span>
+          </div><!--header-content-->
+          
+          {{#collection.RH_title-content--cs}}
+          <div class="title-content">
+            {{#block.RH_title-section--cs}}
+            <h1 data-max-line="2">{{{ heading }}}</h1>
+            <h2 data-max-line="1">{{{ subheading }}}</h2>
+            {{/block.RH_title-section--cs}}
+          </div><!--title-content-->
+          {{/collection.RH_title-content--cs}}
+          
+          <div class="page-content">
+            <div class="sidebar">
+              <div class="brackets {{ show-sidebar-image }}">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     viewBox="0 0 188 112" style="enable-background:new 0 0 188 112;" xml:space="preserve">
+                  <style type="text/css">
+                    .st0{clip-path:url(#SVGID_2_);fill:#FEFDFD;}
+                    .st1{clip-path:url(#SVGID_2_);fill:#BD0404;}
+                    .st2{clip-path:url(#SVGID_2_);fill:#CD0404;}
+                    .st3{clip-path:url(#SVGID_2_);fill:#C00D0D;}
+                    .st4{clip-path:url(#SVGID_2_);fill:#CE0A0A;}
+                  </style>
+                  <g>
+                    <defs>
+                      <rect id="SVGID_1_" x="1.8" y="1" width="184.4" height="110.1"/>
+                    </defs>
+                    <clipPath id="SVGID_2_">
+                      <use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+                    </clipPath>
+                    <path class="st0" d="M104.1,7.1c9.4,0,18.8,0,28.2,0c0,4.5,0,9,0,13.1c0.7,0.5,0.8,0.6,0.9,0.6c3.4,0.1,6.8,0.1,10.1,0.1
+                                         c4.7,0.1,6.4,1.7,6.6,6.4c0.2,4.3,0.3,8.5,0,12.8c-0.4,6.4,1,11.9,6.7,16c-5.5,3.9-7,9.1-6.7,15.2c0.2,4.4,0.1,8.8,0,13.2
+                                         c-0.2,5-1.8,6.6-6.7,6.7c-3.5,0.1-7,0-10.5,0c0,4.8,0,9.1,0,13.6c6.6,0,12.9,0.2,19.2-0.1c8.8-0.4,14.6-6.5,14.9-15.4
+                                         c0.1-2.2,0-4.4,0-6.6c0-2.4,0-4.7,0-7.1c0-10.7,1-11.8,11.3-13.1c0,14.7,0,29.4,0,44.1c-55.6,0-111.2,0-166.8,0
+                                         c0-33.2,0-66.5,0-99.7c8.2,0,16.5,0,24.7,0C26,10.7,22.9,18.3,23.8,28.5c0.3,3.9,0.1,7.9,0,11.9c-0.1,5.7-2.1,7.9-7.7,8.8
+                                         c-1.1,0.2-2.2,0.3-3.4,0.5c0,4.5,0,8.7,0,12.9c10.8,2,11.2,2.4,11.2,13.5c0,4.6-0.1,9.1,0.1,13.7c0.3,8.1,5.5,14.2,13.5,14.9
+                                         c6.8,0.6,13.7,0.1,20.7,0.1c0-4.6,0-8.9,0-13.5c-3.6,0-7,0.1-10.4,0c-5-0.1-6.6-1.6-6.9-6.6c-0.2-3.8-0.2-7.7,0-11.5
+                                         c0.4-6.7-0.3-12.9-6.7-17.1c5.3-3.9,6.9-8.7,6.7-14.6c-0.2-4.5-0.2-9.1,0-13.7c0.2-5.2,1.9-6.8,7-6.9c3.5,0,6.9,0,10.4,0
+                                         c0-5.1,0-9.5,0-13.9c9.4,0,18.8,0,28.2,0c0.1,1.6,0.4,3.2,0.4,4.8c0,29.7,0,59.5,0,89.2c0,1.6,0,3.1,0,4.7c3.2,0,5.8,0,8.4,0
+                                         c2.7,0,5.5,0,8.6,0c0-1.9,0-3.5,0-5.1c0-26.1,0-52.2,0-78.3C103.9,17.3,104,12.2,104.1,7.1z"/>
+                    <path class="st1" d="M58.2,7.1c0,4.4,0,8.8,0,13.9c-3.5,0-7,0-10.4,0c-5.1,0.1-6.8,1.6-7,6.9c-0.2,4.6-0.2,9.1,0,13.7
+                                         c0.3,5.8-1.4,10.7-6.7,14.6c6.3,4.2,7,10.4,6.7,17.1c-0.2,3.8-0.2,7.7,0,11.5c0.3,5,1.9,6.5,6.9,6.6c3.4,0.1,6.7,0,10.4,0
+                                         c0,4.6,0,8.9,0,13.5c-7,0-13.9,0.5-20.7-0.1c-8-0.7-13.2-6.9-13.5-14.9c-0.2-4.6-0.1-9.1-0.1-13.7c0-11.1-0.3-11.5-11.2-13.5
+                                         c0-4.2,0-8.4,0-12.9c1.2-0.2,2.3-0.3,3.4-0.5c5.6-0.9,7.6-3.1,7.7-8.8c0.1-4,0.3-8,0-11.9C22.9,18.3,26,10.7,36.2,7.1
+                                         C43.5,7.1,50.9,7.1,58.2,7.1z"/>
+                    <path class="st2" d="M178.2,62.6c-10.3,1.2-11.3,2.4-11.3,13.1c0,2.4,0,4.7,0,7.1c0,2.2,0,4.4,0,6.6c-0.4,8.9-6.1,15-14.9,15.4
+                                         c-6.3,0.3-12.6,0.1-19.2,0.1c0-4.5,0-8.8,0-13.6c3.5,0,7,0.1,10.5,0c4.9-0.2,6.6-1.8,6.7-6.7c0.2-4.4,0.2-8.8,0-13.2
+                                         c-0.3-6.1,1.2-11.4,6.7-15.2c-5.7-4.1-7.1-9.6-6.7-16c0.2-4.2,0.2-8.5,0-12.8c-0.2-4.7-1.9-6.3-6.6-6.4c-3.4-0.1-6.8-0.1-10.1-0.1
+                                         c-0.1,0-0.2-0.2-0.9-0.6c0-4.1,0-8.6,0-13.1c7.1,0,14.1,0,21.2,0c0.3,0.3,0.6,0.7,0.9,0.8c8.6,2.3,12.2,6.8,12.4,15.6
+                                         c0.1,4.7,0,9.4,0,14c0,9.7,1.7,11.4,11.3,12C178.2,53.8,178.2,58.2,178.2,62.6z"/>
+                    <path class="st3" d="M95.3,105.8c-2.6,0-5.2,0-8.4,0c0-1.6,0-3.2,0-4.7c0-29.7,0-59.5,0-89.2c0-1.6-0.2-3.2-0.4-4.8
+                                         c2.9,0,5.9,0,8.8,0C95.3,40,95.3,72.9,95.3,105.8z"/>
+                    <path class="st4" d="M95.3,105.8c0-32.9,0-65.8,0-98.7c2.9,0,5.9,0,8.8,0c-0.1,5.1-0.2,10.2-0.2,15.4c0,26.1,0,52.2,0,78.3
+                                         c0,1.6,0,3.2,0,5.1C100.8,105.8,98,105.8,95.3,105.8z"/>
+                  </g>
+                </svg>
+              </div>
+              {{#collection.RH_sidebar-content--cs}}
+              {{#block.RH_content--cs}}
+              <div class="text-block" data-max-height="535">{{{ RH_content--cs }}}</div>
+              {{/block.RH_content--cs}}
+              {{/collection.RH_sidebar-content--cs}}
+              
+              
+              <div class="footer-block">
+                {{#collection.RH_social--cs}}
+                <div class="social-icons">
+                  <a href="{{{facebook-link}}}"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                  <a href="twitter.com/{{{twitter-link}}}"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                  <a href="{{{linkedin-link}}}"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                </div>
+				<div class="social-links">
+                  <a href="{{{facebook-link}}}">{{{facebook-link}}}</a>
+                  <a href="twitter.com/{{{twitter-link}}}">@{{{twitter-link}}}</a>
+                  <a href="{{{linkedin-link}}}">{{{linkedin-link}}}</a>
+                </div>
+                {{/collection.RH_social--cs}}
+				{{#collection.RH_footer--cs}}
+                <div class="footer-text">{{{ RH_footer--cs }}}</div>
+                {{/collection.RH_footer--cs}}
+              </div><!--footer-block-->
+            </div><!--sidebar-->
+            
+            <div class="main-content" data-max-height="dynamic">
+            {{#collection.RH_mainContent}}
+              {{#block.main-content--gc}}
+           	  <div class="content">
+                {{{ RH_main-content--gc }}}
+              </div>
+              <div class="footnote">
+              	{{{ RH_footnote--gc }}}
+              </div>
+              {{/block.main-content--gc}}
+            {{/collection.RH_mainContent}}
+            </div><!--main-content-->
+          </div>
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--front-page-->
+    {{/block.RH_front-page--cs}}
+    
+    {{#block.RH_internal-page--cs}}
+    <div class="page internal-page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+          <div class="header-content">
+            <img src="" class="logo js-img-target" />
+            <span class="brief-text js-heading-target"></span>
+          </div><!--header-content-->
+          
+          <div class="page-content">
+            <div class="sidebar">
+              <img class="building {{ show-sidebar-image }}" src="//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/4f5bb881c3214644d5197593b1b1e780/footer-building.svg">
+              {{#collection.RH_sidebar-content--cs}}
+              {{#block.RH_content--cs}}
+              <div class="text-block" data-max-height="360">{{{ RH_content--cs }}}</div>
+              {{/block.RH_content--cs}}
+              {{#block.RH_location-content--cs}}
+              <div class="text-block location-text-block" data-max-height="200">{{{ RH_content--cs }}}</div>
+              {{/block.RH_location-content--cs}}
+              {{/collection.RH_sidebar-content--cs}}
+              
+              
+              <div class="footer-block">
+                {{#collection.RH_social--cs}}
+                <div class="social-icons">
+                  <a href="{{{facebook-link}}}"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                  <a href="twitter.com/{{{twitter-link}}}"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                  <a href="{{{linkedin-link}}}"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                </div>
+				<div class="social-links">
+                  <a href="{{{facebook-link}}}">{{{facebook-link}}}</a>
+                  <a href="twitter.com/{{{twitter-link}}}">@{{{twitter-link}}}</a>
+                  <a href="{{{linkedin-link}}}">{{{linkedin-link}}}</a>
+                </div>
+                {{/collection.RH_social--cs}}
+				{{#collection.RH_footer--cs}}
+                <div class="footer-text">{{{ RH_footer--cs }}}</div>
+                {{/collection.RH_footer--cs}}
+              </div><!--footer-block-->
+            </div><!--sidebar-->
+            
+            <div class="main-content">
+            {{#collection.RH_mainContent}}
+              {{#block.main-content--gc}}
+              <div class="content" data-max-height="670">
+                {{{ RH_main-content--gc }}}
+              </div>
+             {{#RH_call-to-action--gc}}<a class="call-to-action" href="{{{ RH_call-to-action--gc }}}" data-max-line="1">{{{ RH_call-to-action--gc }}}</a>{{/RH_call-to-action--gc}}
+              <div class="footnote" data-max-line="5">
+              	{{{ RH_footnote--gc }}}
+              </div>
+              {{/block.main-content--gc}}
+            {{/collection.RH_mainContent}}
+            {{#collection.RH_copyright--cs}}
+              <small class="copyright-text" data-max-line="3">{{{ RH_copyright--cs }}}</small>
+            {{/collection.RH_copyright--cs}}
+            </div><!--main-content-->
+          </div>
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--internal-page-->
+    {{/block.RH_internal-page--cs}}
+	{{/collection.RH_general-collateral--cs}}
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+      
+      setInterval(() => {
+        injectHeading();
+      }, 500);
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+        });
+      });
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+      
+      function injectHeading() {
+        const src = document.querySelector('.js-heading-src');
+        const targets = document.querySelectorAll('.js-heading-target');
+
+        targets.forEach(target => {
+          // If no text is set for the Type, it will fallback to 'Checklist'
+          const output = (src.innerText == '') ? 'Brief' : src.innerHTML;
+          target.innerHTML = output;
+        });
+        
+        const imgSrc = document.querySelector('.js-img-src');
+        const imgTargets = document.querySelectorAll('.js-img-target');
+        
+        imgTargets.forEach(imgTarget => {
+          const output = (imgSrc.src.onerror = null ) ? 'https://files.outfit.io/media_library_items/126505/redhatlogo-text.svg' : imgSrc.src;
+          imgTarget.src = output;
+        });
+      }
+
+    </script>
+
+
+  </body>
+</html>
