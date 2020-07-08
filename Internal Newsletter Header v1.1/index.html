@@ -1,0 +1,72 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+  </head>
+  <body class="theme-color {{brand-theme}} {{^brand-theme}}none{{/brand-theme}} {{crop-bleed}} {{#background-image}}background-image-shown{{/background-image}}">
+    <div class="document">
+      <div class="pattern {{brand-theme}}-hero-full-pattern"></div>
+
+      {{#background-image}}
+      <div class="background-image" style="background-image: url('{{background-image}}');"></div>
+      {{/background-image}}
+
+      <div class="full-height {{brand-theme}}-artwork {{^brand-theme}}none{{/brand-theme}} js-artwork"></div>  
+
+      <div class="content">
+        <div class="flex-headline-lockup">
+          <div class="text-content">
+            <div class="headings">
+              {{#newsletter-title}}
+              <div>
+                <h1 style="{{^newsletter-title-font-size-v1-1}}font-size: 2.2em;{{/newsletter-title-font-size-v1-1}} {{#newsletter-title-font-size-v1-1}} font-size: {{{ newsletter-title-font-size-v1-1 }}}em; {{/newsletter-title-font-size-v1-1}} color: {{^newsletter-title-color}} #333333; {{/newsletter-title-color}} {{#newsletter-title-color}} {{{ newsletter-title-color }}}; {{/newsletter-title-color}}">{{{newsletter-title}}}</h1>
+              </div>
+              {{/newsletter-title}}
+              
+              <div class="align-bottom">
+                {{#newsletter-date}}
+                <div>
+                  <h3 style="font-size: 1em; line-height: 1em;">{{{newsletter-date}}}</h3>
+                </div>
+                {{/newsletter-date}}
+
+                {{#newsletter-subheader}}
+                <div>
+                  <h2 style="{{^newsletter-subheader-font-size}}font-size: 1.3em; line-height: 1.3em; margin-top: 0.2em;{{/newsletter-subheader-font-size}} {{#newsletter-subheader-font-size}}font-size: {{newsletter-subheader-font-size}}em; line-height: 1.3em; margin-top: 0.2em;{{/newsletter-subheader-font-size}}">{{{newsletter-subheader}}}</h2>
+                </div>
+                {{/newsletter-subheader}}
+              </div>
+            </div><!-- headings -->
+          </div>
+        </div>
+      </div><!--content-->
+    </div><!--document-->
+    <script type="text/javascript">
+      window.redhatArtComplexity = 2;
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="//redhatbrand.github.io/RedHatPatterns/red-hat-patterns.js"></script>
+    <script type="text/javascript" src="assets/javascripts/main.js"></script>
+
+
+    <div class="crop top-left">
+      <div class="bottom"></div>
+      <div class="right"></div>
+    </div>
+    <div class="crop top-right">
+      <div class="bottom"></div>
+      <div class="left"></div>
+    </div>
+    <div class="crop bottom-right">
+      <div class="top"></div>
+      <div class="left"></div>
+    </div>
+    <div class="crop bottom-left">
+      <div class="top"></div>
+      <div class="right"></div>
+    </div>
+
+  </body>
+</html>
