@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html data-sign="OS?">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    {{{account.snippets.design-system-link}}}
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Circular/stylesheet.css');
+
+      html {
+        font-family: "Circular";
+        font-size: 11pt;
+        color: #000;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 2.405rem;
+      }
+
+      .chartBox {
+        margin: 0 1.440rem;
+        max-width: 5.473rem;
+        font-size: 0.317rem;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .chartBox::after {
+        content: attr(data-content);
+        display: block;
+        margin-top: 0.504rem;
+        font-weight: 700;
+      }     
+
+      .chartBox__content {
+        margin-top: 0.792rem;
+        font-size: 0.426rem;
+        line-height: 1.2em;
+
+        {{#RDH_text-size}}
+        font-size: {{{ RDH_text-size }}}px;
+        {{/RDH_text-size}}
+      }
+      
+      /* More padding */
+
+      .page.more-padding .container {
+        padding: 0.75em 0 0.25em 0;
+        justify-content: space-between;
+      }
+
+      .page.more-padding .chartBox {
+        max-width: 100%;
+        width: 32%;
+        height: 100%;
+      }
+      
+      .page.more-padding .chartBox .graph svg {
+        width: 88%;
+        height: auto;
+      }
+      
+      .page.more-padding .chartBox__content {
+        margin-top: 0;
+        height: 4em;
+        padding-top: 0.5em;
+        overflow: hidden;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      {{#placeholder-image-1}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      {{/placeholder-image-1}}
+    </div><!-- end placeholderMaster -->
+     <div class="page {{ RDH_padding-version }}">
+
+      <div class="bleed center-children">
+
+        <div class="placeholder"></div>
+
+        <div class="container fit">
+
+          {{#collection.RDH_charts}}
+          <div class="chartBox">
+            <div class="graph" data-percentage="{{{RDH_data-percentage}}}"></div>
+            <div class="chartBox__content" data-max-line="3">{{{RDH_text}}}</div>
+          </div>
+
+          {{/collection.RDH_charts}}
+
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+        });
+      });
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+      
+      // D3.js initialization
+
+      function generateCharts() {
+        const chartBoxes = document.querySelectorAll('[data-percentage]');
+
+        chartBoxes.forEach((chartBox, i) => {
+          let data = [
+            {name: 'chart', count: chartBox.dataset.percentage, percentage: chartBox.dataset.percentage, color: '{{{account.colors.primary-red-2019}}}'},
+            {name: 'chartBg', count: 100 - chartBox.dataset.percentage, percentage: 100 - chartBox.dataset.percentage, color: '{{{account.colors.light-grey-2019}}}'}
+          ];
+          let totalCount = 100;       //calcuting total manually
+
+          let width = 330,
+              height = 330,
+              radius = 170;
+
+          let arc = d3.arc()
+          .outerRadius(radius - 10)
+          .innerRadius(120);
+
+          let pie = d3.pie()
+          .sort(null)
+          .value(function(d) {
+            return d.count;
+          });
+
+          let svg = d3.select(`.chartBox:nth-child(${i + 1}) [data-percentage]`).append("svg")
+          .attr("width", width)
+          .attr("height", height)
+          .attr("preserveAspectRatio", "xMinYMin meet")
+          .attr("viewBox", "0 0 330 330")
+          // Class to make it responsive.
+          .classed("svg-content-responsive", true)
+          .append("g")
+          .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+          let g = svg.selectAll(".arc")
+          .data(pie(data))
+          .enter().append("g");    
+
+          g.append("path")
+            .attr("d", arc)
+            .style("fill", function(d,i) {
+            return d.data.color;
+          });
+
+          let percentagePosition = 0;
+          let fontSize = 4.5;
+          let fontTop = 35;
+
+          g.append("text")
+            .attr("text-anchor", "middle")
+            .attr('font-weight', 700)
+            .attr('fill', '{{account.colors.primary-red-2019}}')
+            .html(function(d) {
+            if (d.index == 1) return;
+            // Chacking if the percent has one, two or three digits
+            switch(d.data.percentage.length) {
+              case 1:
+                percentagePosition = 45;
+                break;
+              case 2:
+                percentagePosition = 75;
+                break;
+              case 3:
+                percentagePosition = 90;
+                fontSize = 4;
+                fontTop = 30;
+            }
+            return d.data.percentage;
+          }).attr('font-size', `${fontSize}em`)
+            .attr('y', fontTop)
+            .append('tspan')
+            .text(function(d) {
+            if (d.index == 1) return;
+            return '%';
+          })
+            .style('font-size', '0.4em')
+            .attr('y', 5)          
+            .attr('x', percentagePosition);
+        });            
+      }
+
+      generateCharts();
+      document.dispatchEvent(new Event('printready'));
+
+    </script>
+
+
+  </body>
+</html>
