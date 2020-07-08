@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html data-sign="OS?">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+
+
+    <style>
+      @import url('https://red-hat-design-system.netlify.com/public/red-hat-outfit.css')
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Circular/stylesheet.css');
+      @import url('https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap');
+
+      :root {
+        --blue: #00a4e4;
+        --red: #ee0000;
+        --black: #000000;
+        --text-black: #231f20;
+        --grey: #58595b;
+        --light-grey: #e6e7e8;
+        --light-light-grey: #ededee;
+      }
+      
+      html {
+        font-family: "Circular";
+        font-size: 11pt;
+        color: var(--grey);
+      }
+      
+      a {
+        text-decoration: none;
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }      
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }        
+      
+      .container {
+        padding: 0.95rem 1.19rem;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      @media (min-width: 816px) {
+        .container {
+          padding: 1em 1.25em;
+        }
+      }
+      
+      /* Header content */
+      .redhatLogo {
+        margin: 0;
+      }
+      
+      .redhatLogo > img {
+        height: 35.58px;
+      }
+      
+      .header-content {
+        padding-bottom: 1.2rem;
+      }
+      
+      .logo-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .brief-text {
+        font-size: 0.17em;
+        color: var(--red);
+      }
+      
+      .js-heading-src, .js-name-src {
+        display: none;
+      }
+      
+      /* Title content */
+      .heading {
+        font-size: 0.66em;
+        color: var(--red);
+        margin-bottom: 1.15em;
+        font-weight: 400;
+      }
+      
+      p, ul li, ol li {
+        font-size: 0.195em;
+        line-height: 1.35em;
+      }
+      
+      ul, ol {
+        margin-bottom: 0;
+      }
+      
+      ul li, ol li {
+        margin-bottom: 0;
+        line-height: 1.8em !important;
+      }
+      
+      li li {
+        font-size: 0.95em !important;
+      }
+      
+      .text-block ul, .text-block ol {
+        margin-left: 0.05em;
+      }
+      
+      .text-block p {
+        line-height: 1.5;
+      }
+      
+      .text-block span {
+        font-family: monospace;
+        text-decoration: none !important;
+        font-weight: 600;
+      }
+      
+      @media (min-width: 816px) {
+        .p {
+          font-size: 0.22em;
+        }
+      }
+      
+      strong {
+        font-weight: bold !important;
+      }
+      
+      /* Main */
+      .flex-row {
+        display: flex;
+        flex-direction: row;
+        width: 100%
+      }
+      .flex-col {
+        display: flex;
+        flex-direction: column;
+      }
+      .main {
+        /*flex-grow: 1;*/
+        height: 100%;
+      }
+      
+      /* Sidebar content */
+      .sidebar-content {
+        position: relative;
+        border: none;
+        margin: 0;
+        padding: 0.07em 0 0 0 !important;
+        width: 25.75%;
+      }
+      .customer-logo {
+        height: 0.915em;
+        text-align: right;
+        margin-right: 0.38em
+      }
+      .customer-logo img {
+        max-height: 100%;
+        width: auto;
+        display: inline-block;
+        vertical-align: top;
+      }
+      .sidebar-text-block {
+        border-top: 1px solid var(--grey);
+        border-bottom: 1px solid var(--grey);
+        margin: 0.35em 0;
+        padding: 0.28em 0 0.33em;
+        text-align: right;
+        padding-right: 0.38em;
+      }
+      .sidebar-text-block h1 {
+        font-size: 0.2em;
+        color: var(--red);
+        font-weight: bold;
+        letter-spacing: 0.055em;
+        margin-bottom: 0.65em;
+      }
+      .sidebar-text-block h1:not(:first-child) {
+        padding-top: 0.8em;
+      }
+      
+      .sidebar-footer {
+        flex-grow: 1;
+        justify-content: flex-end;
+        margin-right: 0.38em;
+      }
+      .sidebar-content .sidebar-footer {
+        text-align: right;
+      }
+      
+      .internal-page .sidebar-content {
+        text-align: right;
+      }
+      
+      /* Social Links */
+      .social-links {
+        margin-bottom: 0.4em;
+      }
+      .social-links a {
+        font-size: 0.17em;
+        color: #000;
+        display: block;
+        line-height: 1.3;
+      }
+      .social-icons {
+        line-height: 10%; /* temporary fix for whitespace */
+        margin-bottom: 0.13em;
+      }
+      .social-icons img {
+        width: 0.41em;
+      }
+      .social-icons a {
+        display: inline-block;
+        margin-left: -0.14em;
+      }
+      
+      /* Main content */
+      .main-content {
+        width: 74%;
+      }
+      .front-page .text-block {
+        padding: 0 0 0.28em 0.38em;
+        border-bottom: 1px solid var(--grey);
+      }
+      .text-block h1 {
+        font-size: 0.25em;
+        color: var(--red);
+        font-weight: bold;
+        margin: 0.15em 0 0.65em;
+      }
+      .main-content h2 {
+        font-size: 0.2em;
+        color: var(--red);
+      }
+      .text-block h2 {
+        font-family: 'Overpass Mono', monospace;
+        color: var(--grey);
+      }
+      .text-block h3 {
+        font-family: monospace;
+        font-size: 0.195em;
+      }
+      
+      /* Columns */
+      .columns {
+        flex-grow: 1;
+      }
+      
+      .left-column {
+        width: 65.5%;
+      }
+      .featured-image {
+        height: 3em !important;
+        width: auto;
+        position: relative;
+        border-bottom: 1px solid var(--grey);
+      }
+      .customer-quote {
+        padding: 0.3em 0.33em 0;
+      }
+      .quote {
+        font-size: 0.26em !important;
+        text-align: right;
+        font-weight: 400;
+        font-style: italic;
+        color: var(--grey) !important;
+        line-height: 1.4;
+        margin-bottom: 0.85em
+      }
+      .quote:before {
+        content: open-quote;
+      }
+      .quote:after {
+        content: close-quote;
+      }
+      .customer-name {
+        text-align: right;
+        font-size: 0.145em;
+        font-weight: 700;
+        margin-bottom: 0;
+      }
+      .customer-title {
+        text-align: right;
+        font-size: 0.145em;
+      }
+      
+      .right-column {
+        width: 34.5%;
+        border-left: 1px solid var(--grey);
+      }
+      .customer-industry, .customer-challenge, .customer-benefits, .customer-statistics {
+        padding: 0.3em 0.37em;
+        border-bottom: 1px solid var(--grey);
+      }
+      .customer-statistics {
+        padding: 0.2em 0.37em;
+      }
+      .customer-statistics strong {
+        color: var(--red);
+        font-weight: 500;
+        padding-right: 0.25em;
+      }
+      .customer-industry h2, .customer-challenge h2, .customer-benefits h2 {
+        letter-spacing: 0.055em;
+      }
+      .customer-industry h2 {
+        margin: 0;
+      }
+      .right-column div:last-child {
+        border-bottom: none !important;
+      }
+      
+      /* Page Footer */
+      .footer-text, .footer-link {
+        font-size: 0.17em;
+        font-weight: 500;
+        margin: 0 2.28em 1.5em 0;
+        text-align: right;
+      }
+      .footer-link a {
+        color: var(--grey);
+      }
+      .js-name-target {
+        font-weight: 400;
+        padding-left: 1em;
+      }
+      
+      /* Internal page */
+      .internal-page .header-content {
+        padding-bottom: 1.79rem;
+      }
+      .internal-page .sidebar-content {
+        padding-right: 0.38em !important;
+      }
+      .headshot-image {
+        position: relative;
+        width: 100%;
+        height: 5.68em !important;
+      }
+      .internal-page .customer-quote {
+        padding: 0.37em 0 0;
+      }
+      .internal-page .text-block {
+        margin-bottom: 0.15em;
+      }
+      .customer-image {
+        position: relative;
+        width: 100%;
+        height: 3.35em !important;
+        margin-bottom: 0.3em;
+      }
+      
+      /* Internal Page 2 */
+      .call-out h2 {
+        font-size: 0.26em !important;
+        text-align: right;
+        font-weight: 400;
+        color: var(--grey) !important;
+        line-height: 1.4;
+      }
+      .call-out {
+        padding-top: 0.25em;
+      }
+      
+      .table-title {
+        font-size: 0.2em;
+        letter-spacing: 0.055em;
+        padding-top: 0.15em;
+        margin-bottom: 0.85em;
+      }
+      .case-study-table {
+        margin-bottom: 0.2em;
+      }
+      .case-study-table th {
+        font-size: 0.2em;
+        padding: 0.65em 0.4em 0.35em 0.4em;
+      }
+      .case-study-table td {
+        font-size: 0.19em;
+        padding: 0.46em 0.4em;
+      }
+      
+      .img-container {
+        background-color: var(--light-light-grey);
+        padding: 0.3em;
+        margin: 0.2em 0 0.4em 0;
+      }
+      .img-container .img {
+        height: 3.4em !important;
+        position: relative;
+      }
+      .img-container cite {
+        border-top: 1px solid var(--grey);
+        color: var(--grey);
+        font-size: 0.17em;
+        padding-top: 0.7em;
+        margin-top: 1.4em;
+        line-height: 1.2em;
+        font-style: normal;
+        display: block;
+        width: 100%;
+      }
+      
+      .footnotes {
+        margin-top: 0.32em;
+        border-top: 1px solid var(--grey);
+        padding-top: 0.13em;
+      }
+      .footnotes p {
+        font-size: 0.16em;
+        margin-bottom: 0.4em;
+      }
+      sup, sub {
+        font-weight: bold;
+        font-size: 1em;
+        padding-right: 0.7em;
+      }
+      
+      /* Internal Page Footer */
+      .internal-page .footer-text:after {
+        content: attr(data-footnote-number);
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-weight: 400;
+      }
+      .page-footer {
+        margin-top: 0.4em;
+      }
+      .internal-page .footer-link {
+        width: 22.55%;
+        margin-bottom: 0;
+      }
+      .internal-page .footer-text {
+        width: 75%;
+        text-align: left;
+        margin-right: 0;
+        margin-bottom: 0;
+        position: relative;
+      }
+      .footer-text .js-heading-target {
+        color: var(--red);
+      }
+      .sidebar-footnote {
+        flex-grow: 1;
+        justify-content: flex-end;
+      }
+      .sidebar-footnote-text {
+        border-top: 1px solid var(--grey);
+        margin-bottom: 1.3em;
+        padding-top: 0.15em;
+      }
+      
+      /* Last Page */
+      .last-page .header-content {
+        padding-bottom: 3.4rem;
+      }
+      
+      /* Last Page Sidebar */
+      
+      .last-page .sidebar-footer {
+        margin-right: 0;
+        text-align: right;
+        margin-bottom: 0.1em;
+      }
+      .last-page .footer-link {
+        width: 100%;
+      }
+      .last-page .footer-text {
+        text-align: right;
+        width: 100%;
+        font-size: 0.15em;
+      }
+      .building {
+        line-height: 1;
+        margin-bottom: 0.4em;
+      }
+      .building img {
+        width: 0.75em;
+        display: inline-block;
+      }
+      .building.hide {
+        display: none;
+      }
+      
+      /* Last Page Footer */
+      .main-content-footer {
+        flex-grow: 1;
+        justify-content: flex-end;
+      }
+      .about {
+        border-bottom: 1px solid var(--grey);
+        margin-bottom: 0.1em;
+      }
+      .about h1 {
+        font-size: 0.20em;
+        font-weight: 600;
+        margin-bottom: 0.4em;
+        color: var(--grey);
+        letter-spacing: 0.035em;
+      }
+      .about p {
+        font-size: 0.18em;
+        line-height: 1.2;
+      }
+      .about-text {
+        margin-bottom: 0.1em;
+      }
+      
+      .about-header {
+    	font-size: 8pt;
+    	display: flex;
+    	justify-content: flex-end;
+      }
+      
+      .about-header a {
+        color: inherit;
+        margin-left: 0.5em;
+      }
+      
+      .locations {
+        margin-bottom: 0.45em;
+      }
+      .locations .text-block {
+        font-size: 0.19em;
+      }
+      .location-block {
+        width: 25%;
+      }
+      .location-block a {
+        color: var(--grey);
+      }
+      
+      .copyright-text {
+        display: inline-block;
+        font-size: 0.14em;
+      }
+      
+      /* Override what is in the Design System*/
+      body {
+        font-size: 57.2335px;
+        line-height: initial;
+      }
+      
+      /* Conditionals to Show / Hide depending on the language */
+      
+      .sidebar-footer.flex-col {
+        display: none;
+      }
+      
+      body[data-language="en"] .sidebar-footer.flex-col.en,
+      body[data-language="it"] .sidebar-footer.flex-col.it,
+      body[data-language="ja"] .sidebar-footer.flex-col.ja,
+      body[data-language="ko"] .sidebar-footer.flex-col.ko,
+      body[data-language="de"] .sidebar-footer.flex-col.de,
+      body[data-language="es"] .sidebar-footer.flex-col.es,
+      body[data-language="esES"] .sidebar-footer.flex-col.esES,
+      body[data-language="fr"] .sidebar-footer.flex-col.fr,
+      body[data-language="ptBR"] .sidebar-footer.flex-col.ptBR,
+      body[data-language="zhCN"] .sidebar-footer.flex-col.zhCN {
+        display: flex;
+      }
+      
+      .footer-link {
+        display: none
+      }
+      
+      body[data-language="en"] .footer-link.en,
+      body[data-language="it"] .footer-link.it,
+      body[data-language="ja"] .footer-link.ja,
+      body[data-language="ko"] .footer-link.ko,
+      body[data-language="de"] .footer-link.de,
+      body[data-language="es"] .footer-link.es,
+      body[data-language="esES"] .footer-link.esES,
+      body[data-language="fr"] .footer-link.fr,
+      body[data-language="ptBR"] .footer-link.ptBR,
+      body[data-language="zhCN"] .footer-link.zhCN {
+        display: block;
+      }
+      
+      .main-content-footer.flex-col {
+        display: none;
+      }
+      
+      body[data-language="en"] .main-content-footer.flex-col.en,
+      body[data-language="it"] .main-content-footer.flex-col.it,
+      body[data-language="ja"] .main-content-footer.flex-col.ja,
+      body[data-language="ko"] .main-content-footer.flex-col.ko,
+      body[data-language="de"] .main-content-footer.flex-col.de,
+      body[data-language="es"] .main-content-footer.flex-col.es,
+      body[data-language="esES"] .main-content-footer.flex-col.esES,
+      body[data-language="fr"] .main-content-footer.flex-col.fr,
+      body[data-language="ptBR"] .main-content-footer.flex-col.ptBR,
+      body[data-language="zhCN"] .main-content-footer.flex-col.zhCN {
+        display: flex;
+      }
+      
+      .sidebar-footer.flex-col.ko > .building {
+        margin-bottom: 1.3em;
+      }
+      
+      .location-block.ko {
+        display: flex;
+        flex-direction: row;
+        font-size: 7pt;
+        width: 30%;
+      }
+      
+      .location-block.ko {
+        display: flex;
+        flex-direction: row;
+        font-size: 7pt;
+        width: 30%;
+      }
+      
+      .location-block.ko > .text-block {
+    	display: flex;
+    	width: 80%;
+    	flex-direction: column;
+        font-size: inherit;
+      }
+      
+      .location-block.ko > .text-block:first-child {
+        width: 20%;
+    	justify-content: center;
+      }
+      
+      .location-block.ko > .text-block > a {
+        width: 75%;
+      }
+      
+      .location-block.es {
+        width: 33.33%;
+      }
+      
+      .social-icons.zhCN {
+        display: flex;
+        flex-direction: row;
+      }
+      
+      .social-block.zhCN {
+		width: 50%;
+    	display: flex;
+    	flex-direction: column;
+    	align-items: center;
+      }
+      
+      .social-block.zhCN:last-child {
+		margin-left: 0.5em;
+      }
+      
+      .social-block.zhCN img {
+		width: 100%;
+      }
+      
+      .social-block p {
+        font-size: 0.15em;
+      }
+      
+      .location-block.zhCN:last-child {
+        width: 65%;
+    	margin-left: 10%;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}}" data-crop="{{show-crop}}" data-language="{{language}}{{^language}}en{{/language}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      {{#placeholder-image-1}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      {{/placeholder-image-1}}
+    </div><!-- end placeholderMaster -->
+    
+    <div class="js-heading-src">{{{ type }}}</div>
+    <div class="js-name-src">{{{ document-name }}}</div>
+    
+    {{#collection.RH_general-collateral--cs}}
+	
+    {{#block.RH_front-page--cs}}
+    <div class="page front-page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+          
+          <div class="header-content">
+            <div class="logo-container">
+              <div class="redhatLogo">
+                <img src="https://files.outfit.io/media_library_items/96161/rh.png"/>
+              </div>
+              <span class="brief-text js-heading-target"></span>
+            </div>
+          </div><!--header-content-->
+          
+          <h1 class="heading" data-max-line="3">{{{ heading }}}</h1>
+          
+          <div class="main flex-row">
+            
+            <div class="sidebar-content flex-col">
+              {{#collection.RH_sidebar-content--cs}}
+              
+                {{#block.RH_customer-logo--cs}}
+                <div class="customer-logo"><img src="{{{ case-study-customer-logo }}}" /></div>
+                {{/block.RH_customer-logo--cs}}
+
+                {{#block.RH_sidebar-text--cs}}
+                <div class="sidebar-text-block" data-max-height="500">{{{ RH_sidebar-text--cs }}}</div>
+                {{/block.RH_sidebar-text--cs}}
+              {{/collection.RH_sidebar-content--cs}}
+              
+                <!-- ENGLISH -->
+                <div class="sidebar-footer flex-col en">
+                  <div class="social-icons">
+                    <a href="https://facebook.com/redhatinc"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                    <a href="https://twitter.com/redhat"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                    <a href="https://linkedin.com/company/red-hat"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://facebook.com/redhatinc">facebook.com/redhatinc</a>
+                    <a href="https://twitter.com/redhat">@redhat</a>
+                    <a href="https://linkedin.com/company-red-hat">linkedin.com/company/red-hat</a>
+                  </div>
+                </div>
+              <div class="footer-link en"><a href="https://www.redhat.com">redhat.com</a></div>
+              
+              <!-- ITALIAN -->
+                <div class="sidebar-footer flex-col it">
+                  <div class="social-icons">
+                    <a href="https://facebook.com/RedHatItaly"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                    <a href="https://twitter.com/RedHatItaly"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                    <a href="https://linkedin.com/company/red-hat"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://facebook.com/RedHatItaly">facebook.com/RedHatItaly</a>
+                    <a href="https://twitter.com/RedHatItaly">twitter.com/RedHatItaly</a>
+                    <a href="https://linkedin.com/company-red-hat">linkedin.com/company/red-hat</a>
+                  </div>
+                </div>
+              <div class="footer-link it"><a href="https://it.redhat.com">it.redhat.com</a></div>
+              
+                <!-- JAPANESE -->
+                <div class="sidebar-footer flex-col ja">
+                  <div class="social-icons">
+                    <a href="https://fb.com/RedHatJapan"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                    <a href="https://twitter.com/RedHatJapan"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                    <a href="https://linkedin.com/company/red-hat"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://fb.com/RedHatJapan">fb.com/RedHatJapan</a>
+                    <a href="https://twitter.com/RedHatJapan">twitter.com/RedHatJapan</a>
+                    <a href="https://linkedin.com/company-red-hat">linkedin.com/company/red-hat</a>
+                  </div>
+                </div>
+               <div class="footer-link ja"><a href="http://ja.redhat.com">ja.redhat.com</a></div>
+              
+                <!-- KOREAN -->
+                <div class="sidebar-footer flex-col ko">
+                  <div class="social-icons">
+                    <a href="https://www.facebook.com/redhatkorea"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://www.facebook.com/redhatkorea">www.facebook.com/redhatkorea</a>
+                  </div>
+                </div>
+               <div class="footer-link ko"><a href="https://www.redhat.com/ko">www.redhat.com/ko</a></div>
+              
+                <!-- GERMAN (DE) -->
+                <div class="sidebar-footer flex-col de">
+                  <div class="social-icons">
+                    <a href="https://facebook.com/redhatinc"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                    <a href="https://twitter.com/RedHatDACH"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                    <a href="https://linkedin.com/company/red-hat"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://facebook.com/redhatinc">facebook.com/redhatinc</a>
+                    <a href="https://twitter.com/RedHatDACH">@RedHatDACH</a>
+                    <a href="https://linkedin.com/company-red-hat">linkedin.com/company/red-hat</a>
+                  </div>
+                </div>
+               <div class="footer-link de"><a href="https://de.redhat.com">de.redhat.com</a></div>
+              
+                <!-- SPANISH (ES) -->
+                <div class="sidebar-footer flex-col es">
+                  <div class="social-icons">
+                    <a href="https://facebook.com/redhatinc"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                    <a href="https://twitter.com/redhatla"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                    <a href="https://linkedin.com/company/red-hat"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://facebook.com/redhatinc">facebook.com/redhatinc</a>
+                    <a href="https://twitter.com/redhatla">@redhatla</a>
+                    <a href="https://linkedin.com/company-red-hat">linkedin.com/company/red-hat</a>
+                  </div>
+                </div>
+               <div class="footer-link es"><a href="https://es.redhat.com">es.redhat.com</a></div>
+              
+                <!-- SPANISH (esES) -->
+                <div class="sidebar-footer flex-col esES">
+                  <div class="social-icons">
+                    <a href="https://facebook.com/redhatinc"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                    <a href="https://twitter.com/RedHatIberia"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                    <a href="https://linkedin.com/company/red-hat"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://facebook.com/redhatinc">facebook.com/redhatinc</a>
+                    <a href="https://twitter.com/RedHatIberia">@RedHatIberia</a>
+                    <a href="https://linkedin.com/company-red-hat">linkedin.com/company/red-hat</a>
+                  </div>
+                </div>
+               <div class="footer-link esES"><a href="https://es.redhat.com">es.redhat.com</a></div>
+              
+                <!-- FRENCH (FR) -->
+                <div class="sidebar-footer flex-col fr">
+                  <div class="social-icons">
+                    <a href="https://facebook.com/redhatinc"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                    <a href="https://twitter.com/RedHat_France"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                    <a href="https://linkedin.com/company/red-hat"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://facebook.com/redhatinc">facebook.com/redhatinc</a>
+                    <a href="https://twitter.com/RedHat_France">@RedHat_France</a>
+                    <a href="https://linkedin.com/company-red-hat">linkedin.com/company/red-hat</a>
+                  </div>
+                </div>
+               <div class="footer-link fr"><a href="https://fr.redhat.com">fr.redhat.com</a></div>
+              
+                <!-- PORTUGUESE (FR) -->
+                <div class="sidebar-footer flex-col ptBR">
+                  <div class="social-icons">
+                    <a href="https://facebook.com/redhatinc"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                    <a href="https://twitter.com/redhatbr"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                    <a href="https://linkedin.com/company/red-hat-brasil"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://facebook.com/redhatinc">facebook.com/redhatinc</a>
+                    <a href="https://twitter.com/redhatbr">@redhatbr</a>
+                    <a href="https://linkedin.com/company-red-hat">linkedin.com/company/red-hat-brasil</a>
+                  </div>
+                </div>
+               <div class="footer-link ptBR"><a href="https://br.redhat.com">br.redhat.com</a></div>
+              
+                <!-- CHINESE (zhCN) -->
+               <div class="sidebar-footer flex-col zhCN"></div>
+               <div class="footer-link zhCN"><a href="https://cn.redhat.com">cn.redhat.com</a></div>
+            
+            </div><!--sidebar-content-->
+
+            <div class="main-content flex-col" data-max-height="750">
+              {{#collection.RH_mainContent--cs}}    
+              
+                {{#block.main-content--gc}}
+                <div class="text-block">{{{ RH_case-study-main-content--gc }}}</div>
+                {{/block.main-content--gc}}
+
+                {{#block.main-content-columns--cs}}
+                <div class="columns flex-row">
+                  <div class="left-column">
+                    <div class="featured-image">{{{ featured-image }}}</div>
+                    <div class="customer-quote">
+                      <h2 class="quote">{{{ quote }}}</h2>
+                      <p class="customer-name">{{{ customer-name }}}</p>
+                      <p class="customer-title">{{{ cs-customer-representative-title }}}</p>
+                    </div>
+                  </div><!--left-column-->
+
+                  <div class="right-column">
+                    <div class="customer-industry">
+                      <h2> {{ customer-industry }} Industry</h2>
+                    </div>
+                    {{#customer-challenge}}
+                    <div class="customer-challenge">
+                      <h2>Challenge</h2>
+                      {{{ customer-challenge }}}
+                    </div>
+                    {{/customer-challenge}}
+                    <div class="customer-statistics">
+                      {{#spreadsheet.customer-statistics}}<p><strong>{{value}}</strong>{{text}}</p>{{/spreadsheet.customer-statistics}}
+                    </div>
+                    <div class="customer-benefits">
+                      <h2>Benefits</h2>
+                      {{{ customer-benefits }}}
+                    </div>
+                  </div><!--right-column-->
+                </div><!--columns-->
+                {{/block.main-content-columns--cs}}
+              
+              {{/collection.RH_mainContent--cs}}
+            </div><!--main-content-->
+            
+          </div><!--main-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+	{{/block.RH_front-page--cs}}
+    
+    {{#block.RH_internal-page-one--cs}}
+    <div class="page internal-page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+          <div class="header-content">
+            <div class="logo-container">
+              <div class="redhatLogo">
+                <img src="https://files.outfit.io/media_library_items/96161/rh.png"/>
+              </div>
+            </div>
+          </div><!--header-content-->
+          
+          <div class="main flex-row">
+            <div class="sidebar-content flex-col">
+              {{#collection.RH_sidebar-content--cs}}
+              
+              {{#block.RH_headshot-image--cs}}
+              <div class="headshot-image">{{{ headshot-image }}}</div>
+              {{/block.RH_headshot-image--cs}}
+
+              {{#block.RH_customer-quote--cs}}
+              <div class="customer-quote">
+                <h2 class="quote" data-max-height="420">{{{ quote }}}</h2>
+                <p class="customer-name">{{{ customer-name }}}</p>
+                <p class="customer-title">{{{ cs-customer-representative-title }}}</p>
+              </div>
+              {{/block.RH_customer-quote--cs}}
+
+              {{/collection.RH_sidebar-content--cs}}
+            </div><!--sidebar-content-->
+
+            <div class="main-content" data-max-height="840">
+            {{#collection.RH_mainContent--cs}}
+              
+              {{#block.main-content--gc}}
+              <div class="text-block">{{{ RH_case-study-main-content--gc }}}</div>
+              {{/block.main-content--gc}}
+
+              {{#block.customer-image--cs}}
+              <div class="customer-image">{{{ customer-image }}}</div>
+              {{/block.customer-image--cs}}
+              
+            {{/collection.RH_mainContent--cs}}
+            </div><!--main-content-->
+          </div><!--main-->
+          
+          <div class="page-footer flex-row">
+            <!-- ENGLISH -->
+            <div class="footer-link en"><a href="https://www.redhat.com">redhat.com</a></div>
+            <!-- ITALIAN -->
+            <div class="footer-link it"><a href="https://it.redhat.com">it.redhat.com</a></div>
+            <!-- JAPANESE -->
+            <div class="footer-link ja"><a href="https://ja.redhat.com">ja.redhat.com</a></div>
+            <!-- KOREAN -->
+            <div class="footer-link ko"><a href="https://www.redhat.com/ko">www.redhat.com/ko</a></div>
+            <!-- GERMAN (DE) -->
+            <div class="footer-link de"><a href="https://de.redhat.com">de.redhat.com</a></div>
+            <!-- SPANISH (ES) -->
+            <div class="footer-link es"><a href="https://es.redhat.com">es.redhat.com</a></div>
+            <!-- SPANISH (esES) -->
+            <div class="footer-link esES"><a href="https://es.redhat.com">es.redhat.com</a></div>
+            <!-- FRENCH (FR) -->
+            <div class="footer-link fr"><a href="https://fr.redhat.com">fr.redhat.com</a></div>
+            <!-- PORTUGUESE (ptBR) -->
+            <div class="footer-link ptBR"><a href="https://br.redhat.com">br.redhat.com</a></div>
+            <!-- CHINESE (zhCN) -->
+            <div class="footer-link zhCN"><a href="https://cn.redhat.com">cn.redhat.com</a></div>
+            <div class="footer-text" data-footnote-number="2"><span class="js-heading-target"></span><span class="js-name-target"></span></div>
+          </div><!--page-footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+	{{/block.RH_internal-page-one--cs}}
+    
+    {{#block.RH_internal-page-two--cs}}
+    <div class="page internal-page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+          <div class="header-content">
+            <div class="logo-container">
+              <div class="redhatLogo">
+                <img src="https://files.outfit.io/media_library_items/96161/rh.png"/>
+              </div>
+            </div>
+          </div><!--header-content-->
+          
+          <div class="main flex-row">
+            <div class="sidebar-content flex-col" data-max-height="860">
+              {{#collection.RH_sidebar-content--cs}}
+              
+              {{#block.RH_customer-quote--cs}}
+              <div class="customer-quote">
+                <h2 class="quote">{{{ quote }}}</h2>
+                <p class="customer-name">{{{ customer-name }}}</p>
+                <p class="customer-title">{{{ cs-customer-representative-title }}}</p>
+              </div>
+              {{/block.RH_customer-quote--cs}}
+              
+              {{#block.RH_callout--cs}}
+              <div class="call-out"><h2>{{{ callout }}}</h2></div>
+              {{/block.RH_callout--cs}}
+              
+              {{#block.RH_sidebar-footnote--cs}}
+              <div class="sidebar-footnote flex-col">
+                <div class="sidebar-footnote-text">{{{ sidebar-footnote }}}</div>
+              </div>
+              {{/block.RH_sidebar-footnote--cs}}
+
+              {{/collection.RH_sidebar-content--cs}}
+            </div><!--sidebar-content-->
+
+            <div class="main-content" data-max-height="850">
+            {{#collection.RH_mainContent--cs}}        
+              
+              {{#block.main-content--gc}}
+              <div class="text-block">{{{ RH_case-study-main-content--gc }}}</div>
+              {{/block.main-content--gc}}
+
+              {{#block.case-study-table--cs}}
+              <h3 class="table-title">{{{ table-title }}}</h3>
+              <table class="case-study-table">
+                <thead>
+                  <tr>
+                    <th>{{ table-column-one-name }}</th>
+                    <th>{{ table-column-two-name }}</th>
+                    <th>{{ table-column-three-name }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#spreadsheet.case-study-table}}
+                  <tr>
+                    <td>{{ column-one-text }}</td>
+                    <td>{{ column-two-text }}</td>
+                    <td>{{ column-three-text }}</td>
+                  </tr>
+                  {{/spreadsheet.case-study-table}}
+                </tbody>
+              </table>
+              {{/block.case-study-table--cs}}
+              
+              {{ #block.image-section }}
+              <div class="img-container">
+                <div class="img">{{{ image-with-caption }}}</div>
+                {{#caption}}
+                <cite>{{{ caption }}}</cite>
+                {{/caption}}
+              </div>
+              {{ /block.image-section }}
+              
+              {{#block.footnote--gc}}
+              <div class="footnotes">{{{ case-study-footnotes }}}</div>
+              {{/block.footnote--gc}}
+              
+            {{/collection.RH_mainContent--cs}}
+            </div><!--main-content-->
+          </div><!--main-->
+          
+          <div class="page-footer flex-row">
+            <!-- ENGLISH -->
+            <div class="footer-link en"><a href="https://www.redhat.com">redhat.com</a></div>
+            <!-- ITALIAN -->
+            <div class="footer-link it"><a href="https://it.redhat.com">it.redhat.com</a></div>
+            <!-- JAPANESE -->
+            <div class="footer-link ja"><a href="https://ja.redhat.com">ja.redhat.com</a></div>
+            <!-- KOREAN -->
+            <div class="footer-link ko"><a href="https://www.redhat.com/ko">www.redhat.com/ko</a></div>
+            <!-- GERMAN (DE) -->
+            <div class="footer-link de"><a href="https://de.redhat.com">de.redhat.com</a></div>
+            <!-- SPANISH (ES) -->
+            <div class="footer-link es"><a href="https://es.redhat.com">es.redhat.com</a></div>
+            <!-- SPANISH (esES) -->
+            <div class="footer-link esES"><a href="https://es.redhat.com">es.redhat.com</a></div>
+            <!-- FRENCH (FR) -->
+            <div class="footer-link fr"><a href="https://fr.redhat.com">fr.redhat.com</a></div>
+            <!-- PORTUGUESE (ptBR) -->
+            <div class="footer-link ptBR"><a href="https://br.redhat.com">br.redhat.com</a></div>
+            <!-- CHINESE (zhCN) -->
+            <div class="footer-link zhCN"><a href="https://cn.redhat.com">cn.redhat.com</a></div>
+            <div class="footer-text" data-footnote-number="2"><span class="js-heading-target"></span><span class="js-name-target"></span></div>
+          </div><!--page-footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+	{{/block.RH_internal-page-two--cs}}
+    
+    {{#block.RH_internal-page-three--cs}}
+    <div class="page internal-page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+          <div class="header-content">
+            <div class="logo-container">
+              <div class="redhatLogo">
+                <img src="https://files.outfit.io/media_library_items/96161/rh.png"/>
+              </div>
+            </div>
+          </div><!--header-content-->
+          
+          <div class="main flex-row"></div><!--main-->
+          
+          <div class="page-footer flex-row">
+            <!-- ENGLISH -->
+            <div class="footer-link en"><a href="https://www.redhat.com">redhat.com</a></div>
+            <!-- ITALIAN -->
+            <div class="footer-link it"><a href="https://it.redhat.com">it.redhat.com</a></div>
+            <!-- JAPANESE -->
+            <div class="footer-link ja"><a href="https://ja.redhat.com">ja.redhat.com</a></div>
+            <!-- KOREAN -->
+            <div class="footer-link ko"><a href="https://www.redhat.com/ko">www.redhat.com/ko</a></div>
+            <!-- GERMAN (DE) -->
+            <div class="footer-link de"><a href="https://de.redhat.com">de.redhat.com</a></div>
+            <!-- SPANISH (ES) -->
+            <div class="footer-link es"><a href="https://es.redhat.com">es.redhat.com</a></div>
+            <!-- SPANISH (esES) -->
+            <div class="footer-link esES"><a href="https://es.redhat.com">es.redhat.com</a></div>
+            <!-- FRENCH (FR) -->
+            <div class="footer-link fr"><a href="https://fr.redhat.com">fr.redhat.com</a></div>
+            <!-- PORTUGUESE (ptBR) -->
+            <div class="footer-link ptBR"><a href="https://br.redhat.com">br.redhat.com</a></div>
+            <!-- CHINESE (zhCN) -->
+            <div class="footer-link zhCN"><a href="https://cn.redhat.com">cn.redhat.com</a></div>
+            <div class="footer-text" data-footnote-number="2"><span class="js-heading-target"></span><span class="js-name-target"></span></div>
+          </div><!--page-footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+	{{/block.RH_internal-page-three--cs}}
+    
+    {{#block.RH_last-page--cs}}
+    <div class="page internal-page last-page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+          <div class="header-content">
+            <div class="logo-container">
+              <div class="redhatLogo">
+                <img src="https://files.outfit.io/media_library_items/96161/rh.png"/>
+              </div>
+            </div>
+          </div><!--header-content-->
+          
+         <div class="main flex-row">
+           <div class="sidebar-content flex-col">
+           {{#collection.RH_sidebar-content--cs}} 
+              {{#block.RH_customer-quote--cs}}
+              <div class="customer-quote">
+                <h2 class="quote" data-max-height="460">{{{ quote }}}</h2>
+                <p class="customer-name">{{{ customer-name }}}</p>
+                <p class="customer-title">{{{ cs-customer-representative-title }}}</p>
+              </div>
+              {{/block.RH_customer-quote--cs}}
+           {{/collection.RH_sidebar-content--cs}}
+
+                <!-- ENGLISH -->
+                <div class="sidebar-footer flex-col en">
+                  <div class="building {{ show-building }}">
+                    <img src="//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/4f5bb881c3214644d5197593b1b1e780/footer-building.svg">
+                  </div>
+                  <div class="social-icons">
+                    <a href="https://facebook.com/redhatinc"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                    <a href="https://twitter.com/redhat"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                    <a href="https://linkedin.com/company/red-hat"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://facebook.com/redhatinc">facebook.com/redhatinc</a>
+                    <a href="https://twitter.com/redhat">@redhat</a>
+                    <a href="https://linkedin.com/company/red-hat">linkedin.com/company/red-hat</a>
+                  </div>
+                  <div class="footer-link en"><a href="https://www.redhat.com">redhat.com</a></div>
+                  <div class="footer-text">#0000000_0014</div>
+                </div>
+              
+               <!-- ITALIAN -->
+                <div class="sidebar-footer flex-col it">
+                  <div class="building {{ show-building }}">
+                    <img src="//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/4f5bb881c3214644d5197593b1b1e780/footer-building.svg">
+                  </div>
+                  <div class="social-icons">
+                    <a href="https://facebook.com/RedHatItaly"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                    <a href="https://twitter.com/RedHatItaly"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                    <a href="https://linkedin.com/company/red-hat"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://facebook.com/RedHatItaly">facebook.com/RedHatItaly</a>
+                    <a href="https://twitter.com/RedHatItaly">twitter.com/RedHatItaly</a>
+                    <a href="https://linkedin.com/company/red-hat">linkedin.com/company/red-hat</a>
+                  </div>
+                  <div class="footer-link it"><a href="https://it.redhat.com">it.redhat.com</a></div>
+                  <div class="footer-text">#0000000_0014</div>
+                </div>
+                
+               <!-- JAPANESE -->
+                <div class="sidebar-footer flex-col ja">
+                  <div class="building {{ show-building }}">
+                    <img src="//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/4f5bb881c3214644d5197593b1b1e780/footer-building.svg">
+                  </div>
+                  <div class="social-icons">
+                    <a href="https://fb.com/RedHatJapan"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                    <a href="https://twitter.com/RedHatJapan"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                    <a href="https://linkedin.com/company/red-hat"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://fb.com/RedHatJapan">fb.com/RedHatJapan</a>
+                    <a href="https://twitter.com/RedHatJapan">twitter.com/RedHatJapan</a>
+                    <a href="https://linkedin.com/company-red-hat">linkedin.com/company/red-hat</a>
+                  </div>
+                  <div class="footer-link ja"><a href="https://ja.redhat.com">ja.redhat.com</a></div>
+                  <div class="footer-text">#0000000_0014</div>
+                </div>
+              
+                <!-- KOREAN -->
+                <div class="sidebar-footer flex-col ko">
+                 <div class="building {{ show-building }}">
+                    <img src="//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/4f5bb881c3214644d5197593b1b1e780/footer-building.svg">
+                  </div>
+                 <div class="footer-link ko"><a href="https://www.redhat.com/ko">www.redhat.com/ko</a></div>
+                 <div class="footer-text">#0000000_0014</div>
+                </div>
+              
+                <!-- GERMAN (DE) -->
+                <div class="sidebar-footer flex-col de">
+                  <div class="building {{ show-building }}">
+                    <img src="//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/4f5bb881c3214644d5197593b1b1e780/footer-building.svg">
+                  </div>
+                  <div class="social-icons">
+                    <a href="https://facebook.com/redhatinc"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                    <a href="https://twitter.com/RedHatDACH"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                    <a href="https://linkedin.com/company/red-hat"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://facebook.com/redhatinc">facebook.com/redhatinc</a>
+                    <a href="https://twitter.com/RedHatDACH">@RedHatDACH</a>
+                    <a href="https://linkedin.com/company/red-hat">linkedin.com/company/red-hat</a>
+                  </div>
+                  <div class="footer-link de"><a href="https://de.redhat.com">de.redhat.com</a></div>
+                  <div class="footer-text">#0000000_0014</div>
+                </div>
+              
+                <!-- SPANISH (ES) -->
+                <div class="sidebar-footer flex-col es">
+                  <div class="building {{ show-building }}">
+                    <img src="//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/4f5bb881c3214644d5197593b1b1e780/footer-building.svg">
+                  </div>
+                  <div class="social-icons">
+                    <a href="https://facebook.com/redhatinc"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                    <a href="https://twitter.com/redhatla"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                    <a href="https://linkedin.com/company/red-hat"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://facebook.com/redhatinc">facebook.com/redhatinc</a>
+                    <a href="https://twitter.com/redhatla">@redhatla</a>
+                    <a href="https://linkedin.com/company/red-hat">linkedin.com/company/red-hat</a>
+                  </div>
+                  <div class="footer-link es"><a href="https://es.redhat.com">es.redhat.com</a></div>
+                  <div class="footer-text">#0000000_0014</div>
+                </div>
+              
+                <!-- SPANISH (esES) -->
+                <div class="sidebar-footer flex-col esES">
+                  <div class="building {{ show-building }}">
+                    <img src="//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/4f5bb881c3214644d5197593b1b1e780/footer-building.svg">
+                  </div>
+                  <div class="social-icons">
+                    <a href="https://facebook.com/redhatinc"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                    <a href="https://twitter.com/RedHatIberia"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                    <a href="https://linkedin.com/company/red-hat"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://facebook.com/redhatinc">facebook.com/redhatinc</a>
+                    <a href="https://twitter.com/RedHatIberia">@RedHatIberia</a>
+                    <a href="https://linkedin.com/company/red-hat">linkedin.com/company/red-hat</a>
+                  </div>
+                  <div class="footer-link esES"><a href="https://es.redhat.com">es.redhat.com</a></div>
+                  <div class="footer-text">#0000000_0014</div>
+                </div>
+              
+                <!-- FRENCH (FR) -->
+                <div class="sidebar-footer flex-col fr">
+                  <div class="building {{ show-building }}">
+                    <img src="//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/4f5bb881c3214644d5197593b1b1e780/footer-building.svg">
+                  </div>
+                  <div class="social-icons">
+                    <a href="https://facebook.com/redhatinc"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                    <a href="https://twitter.com/RedHat_France"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                    <a href="https://linkedin.com/company/red-hat"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                  </div>
+                  <div class="social-links">
+                    <a href="https://facebook.com/redhatinc">facebook.com/redhatinc</a>
+                    <a href="https://twitter.com/RedHat_France">@RedHat_France</a>
+                    <a href="https://linkedin.com/company/red-hat">linkedin.com/company/red-hat</a>
+                  </div>
+                  <div class="footer-link fr"><a href="https://fr.redhat.com">fr.redhat.com</a></div>
+                  <div class="footer-text">#0000000_0014</div>
+                </div>
+              
+                    <!-- PORTUGUESE (ptBR) -->
+                    <div class="sidebar-footer flex-col ptBR">
+                      <div class="building {{ show-building }}">
+                        <img src="//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/4f5bb881c3214644d5197593b1b1e780/footer-building.svg">
+                      </div>
+                      <div class="social-icons">
+                        <a href="https://facebook.com/redhatinc"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                        <a href="https://twitter.com/redhatbr"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/twitter-grey.svg" /></a>
+                        <a href="https://linkedin.com/company/red-hat-brasil"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/linkedin-grey.svg" /></a>
+                      </div>
+                      <div class="social-links">
+                        <a href="https://facebook.com/redhatinc">facebook.com/redhatinc</a>
+                        <a href="https://twitter.com/redhatbr">@redhatbr</a>
+                        <a href="https://linkedin.com/company/red-hat-brasil">linkedin.com/company/red-hat-brasil</a>
+                      </div>
+                      <div class="footer-link ptBR"><a href="https://br.redhat.com">br.redhat.com</a></div>
+                      <div class="footer-text">#0000000_0014</div>
+                    </div>
+              
+                      <!-- CHINESE (zhCN) -->
+                      <div class="sidebar-footer flex-col zhCN">
+                        <div class="building {{ show-building }}">
+                          <img src="//outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/4f5bb881c3214644d5197593b1b1e780/footer-building.svg">
+                        </div>
+                        <div class="social-icons zhCN">
+                          <div class="social-block zhCN">
+                              <img src="https://files.outfit.io/media_library_items/134444/Collateral-Red_Hat-Customer_Case_Study-A4-zhCN.png"/>
+                              <p>红帽官方微博</p>
+                          </div>
+                          <div class="social-block zhCN">
+                            <img src="https://files.outfit.io/media_library_items/134596/Collateral-Red_Hat-Customer_Case_Study-A4-zhCN2.png"/>
+                            <p>红帽官方微信</p>
+                          </div>
+                        </div>
+                        <div class="footer-link zhCN"><a href="https://redhat.com/zh">redhat.com/zh</a></div>
+                        <div class="footer-text">#0000000_0014</div>
+                      </div>
+            </div><!--sidebar-content-->
+
+            <div class="main-content flex-col">
+            {{#collection.RH_mainContent--cs}}        
+              {{#block.main-content--gc}}
+              <div class="text-block" data-max-height="550">{{{ RH_case-study-main-content--gc }}}</div>
+              {{/block.main-content--gc}}
+            {{/collection.RH_mainContent--cs}}
+              
+              <!-- ENGLISH -->
+              <div class="main-content-footer flex-col en">
+                <div class="about">
+                   <div class="text-block about-text" data-max-line="8">
+                     <h1>About Red Hat</h1>
+                     <p>
+                       Red Hat is the world’s leading provider of open source software solutions, using a community-powered
+					   approach to provide reliable and high-performing cloud, Linux, middleware, storage, and virtualization
+					   technologies. Red Hat also offers award-winning support, training, and consulting services. As a
+					   connective hub in a global network of enterprises, partners, and open source communities, Red Hat
+					   helps create relevant, innovative technologies that liberate resources for growth and prepare customers
+					   for the future of IT.
+                     </p>
+                  </div>
+                </div>
+
+                <div class="locations flex-row">
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>NORTH AMERICA</strong>
+                      <br/>
+                      1 888 REDHAT1
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>EUROPE, MIDDLE EAST, AND AFRICA</strong>
+                      <br/>
+                      00800 7334 2835
+                      <br/>
+                      <a href="mailto:europe@redhat.com">europe@redhat.com</a>
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>ASIA PACIFIC</strong>
+                      <br/>
+                      +65 6490 4200
+                      <br/>
+                      <a href="mailto:apac@redhat.com">apac@redhat.com</a>
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>LATIN AMERICA</strong>
+                      <br/>
+                      +54 11 4329 7300
+                      <br/>
+                      <a href="mailto:info-latam@redhat.com">info-latam@redhat.com</a>
+                    </div>
+                  </div>
+                </div>
+
+                <small class="copyright-text" data-max-line="5">
+					Copyright © 2019 Red Hat, Inc. Red Hat, Red Hat Enterprise Linux, the Red Hat logo, and JBoss are trademarks or registered trademarks
+					of Red Hat, Inc. or its subsidiaries in the United States and other countries. Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries.
+                </small>
+              </div><!--main-content-footer-->
+              
+              <!-- ITALIAN -->
+              <div class="main-content-footer flex-col it">
+                <div class="about">
+                   <div class="text-block about-text" data-max-line="8">
+                     <h1>About Red Hat</h1>
+                     <p>Red Hat è leader mondiale nella fornitura di soluzioni software open source. Con un approccio basato
+						sul concetto di community, distribuisce tecnologie come Kubernetes, container, Linux e hybrid cloud
+						caratterizzate da affidabilità e prestazioni elevate. Red Hat favorisce l’integrazione di applicazioni
+						nuove ed esistenti, lo sviluppo di applicazioni cloud-native, la standardizzazione su uno tra i principali
+						sistemi operativi enterprise, e consente di automatizzare e gestire ambienti complessi in modo sicuro. I
+						pluripremiati servizi di consulenza, formazione e assistenza hanno reso Red Hat un partner affidabile
+						per le aziende della classifica Fortune 500. Lavorando al fianco di provider di servizi cloud e applicazioni,
+						system integrator, clienti e community open source, Red Hat prepara le organizzazioni ad affrontare un
+						futuro digitale.
+                     </p>
+                  </div>
+                </div>
+
+                <div class="locations flex-row">
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>ITALIA</strong>
+                      <br/>
+                      it.redhat.com
+                      <br/>
+                      <a href="mailto:italy@redhat.com">italy@redhat.com</a>
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>EUROPA, MEDIO ORIENTE, E AFRICA (EMEA)</strong>
+                      <br/>
+                      00800 7334 2835
+                      <br/>
+                      it.redhat.com
+                      <br/>
+                      <a href="mailto:europe@redhat.com">europe@redhat.com</a>
+                    </div>
+                  </div>
+                </div>
+
+                <small class="copyright-text" data-max-line="5">
+                  Copyright © 2019 Red Hat, Inc. Red Hat, Red Hat Enterprise Linux, il logo Red Hat e JBoss sono marchi di Red Hat, Inc. registrati negli
+Stati Uniti o in altri Paesi. Linux® è un marchio registrato di Linus Torvalds negli Stati Uniti e in altri Paesi.
+                </small>
+              </div><!--main-content-footer-->
+              
+              <!-- JAPANESE -->
+              <div class="main-content-footer flex-col ja">
+                <div class="about">
+                   <div class="text-block about-text" data-max-line="8">
+                     <h1>RED HAT について</h1>
+                     <p>
+						エンタープライズ・オープンソース・ソフトウェア・ソリューションのプロバイダーとして世界をリードする
+						Red Hat は、コミュニティとの協業により高い信頼性と性能を備える Linux、ハイブリッドクラウド、コンテナ、
+						および Kubernetes テクノロジーを提供しています。Red Hat は、新規および既存 IT アプリケーションの統合、
+						クラウドネイティブ・アプリケーションの開発、Red Hat が提供する業界トップレベルのオペレーティングシス
+						テムへの標準化、複雑な環境の自動化、セキュリティ保護、運用管理を支援します。受賞歴のあるサポート、ト
+						レーニング、コンサルティングサービスを提供する Red Hat は、Fortune 500 企業に信頼されるアドバイザー
+						です。クラウドプロバイダー、システムインテグレーター、アプリケーションベンダー、お客様、オープンソー
+						ス・コミュニティの戦略的パートナーとして、Red Hat はデジタル化が進む将来に備える企業を支援します。
+                     </p>
+                  </div>
+                </div>
+
+                <div class="locations flex-row">
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>アジア太平洋</strong>
+                      <br/>
+                      +65 6490 4200
+                      <br/>
+                      <a href="mailto:apac@redhat.com">apac@redhat.com</a>
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>インドネシア</strong>
+                      <br/>
+                      001 803 440 224
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>マレーシア</strong>
+                      <br/>
+                      1 800 812 678
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>中国</strong>
+                      <br/>
+                      800 810 2100
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="locations flex-row">
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>オーストラリア</strong>
+                      <br/>
+                      1 800 733 428
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>日本</strong>
+                      <br/>
+                      0120 266 086
+                      <br/>
+                      03 5798 8510
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>ニュージーランド</strong>
+                      <br/>
+                      0800 450 503
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>香港</strong>
+                      <br/>
+                      800 901 222
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="locations flex-row">
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>インド</strong>
+                      <br/>
+                      +91 22 3987 8888
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>韓国</strong>
+                      <br/>
+                      080 708 0880
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>シンガポール</strong>
+                      <br/>
+                      800 448 1430
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>台湾</strong>
+                      <br/>
+                      0800 666 052
+                    </div>
+                  </div>
+                </div>
+
+                <small class="copyright-text" data-max-line="5">
+					Copyright © 2019 Red Hat, Inc. Red Hat、Red Hat Enterprise Linux、Red Hatロゴ、およびJBossは、米国およびその他の国における Red Hat,
+Inc.の登録商標です。Linux®は、米国およびその他の国におけるLinus Torvalds氏の登録商標です。
+                </small>
+              </div><!--main-content-footer-->
+              
+             <!-- KOREAN -->
+              <div class="main-content-footer flex-col ko">
+                <div class="about-header">
+                  한국레드햇 홈페이지  <a href="https://www.redhat.com/ko">https://www.redhat.com/ko</a>
+                </div>
+                <div class="about">
+                   <div class="text-block about-text" data-max-line="8">
+                     <h1>RED HAT 정보</h1>
+                     <p>
+                       Red Hat은 세계적인 엔터프라이즈 오픈소스 솔루션 공급업체로서 커뮤니티 기반 접근 방식을 통해 신뢰도 높은
+					   고성능 Linux, 하이브리드 클라우드, 컨테이너, 쿠버네티스 기술을 제공합니다. 또한 고객으로 하여금 신규 및 기존
+					   IT 애플리케이션을 통합하고, 클라우드 네이티브 애플리케이션을 개발하며, 업계를 선도하는 Red Hat의 운영
+					   체제를 기반으로 표준화하는 동시에 복잡한 환경의 자동화, 보안 및 관리를 실현할 수 있도록 지원합니다. Red Hat은
+					   전세계 고객에게 높은 수준의 지원과 교육 및 컨설팅 서비스를 제공하여 권위있는 어워드를 다수 수상한 바 있으며,
+					   Fortune 선정 500대 기업의 신뢰를 받는 어드바이저로 인정받고 있습니다. 또한 기업, 파트너, 오픈소스 커뮤니티의
+					   전략적인 파트너로서 고객들이 디지털 미래에 대비할 수 있도록 지원하고 있습니다.
+                     </p>
+                  </div>
+                </div>
+
+                <div class="locations flex-row">
+                  <div class="location-block ko">
+                    <div class="text-block">
+                      <a href="https://www.facebook.com/redhatkorea"><img class="social-icon" src="https://redhatbrand.github.io/RedHatTemplates/global-assets/images/social-icons/facebook-grey.svg" /></a>
+                    </div>
+                    <div class="text-block">
+                      <a href="https://www.facebook.com/redhatkorea">www.facebook.com/redhatkorea</a>
+                      구매문의 080 708 0880
+                      <br/>
+                      <a href="mailto:buy-kr@redhat.com">buy-kr@redhat.com</a>
+                    </div>
+                  </div>
+                </div>
+
+                <small class="copyright-text" data-max-line="5">
+				Copyright © 2019 Red Hat, Inc. Red Hat, Red Hat Enterprise Linux, Red Hat 로고 및 JBoss는 미국 및 기타 국가에서 Red Hat, Inc.
+				의 등록 상표입니다. Linux®는 미국 및 기타 국가에서 Linus Torvalds의 등록 상표입니다.
+                </small>
+              </div><!--main-content-footer-->
+              
+              <!-- GERMAN (DE) -->
+              <div class="main-content-footer flex-col de">
+                <div class="about">
+                   <div class="text-block about-text" data-max-line="8">
+                     <h1>ÜBER RED HAT</h1>
+                     <p>
+                       Red Hat, weltweit führender Anbieter von Open Source Software-Lösungen für Unternehmen, folgt
+					   einem community-basierten Ansatz, um verlässliche und leistungsstarke Technologien in den Bereichen
+					   Linux, Hybrid Cloud, Container und Kubernetes bereitzustellen. Wir unterstützen Kunden bei der
+					   Integration neuer und bestehender IT-Anwendungen, der Entwicklung cloudnativer Anwendungen,
+					   der Standardisierung auf unserem branchenführenden Betriebssystem sowie der Automatisierung,
+					   Sicherung und Verwaltung komplexer Umgebungen. Dank unserer vielfach ausgezeichneten Support-,
+					   Training- und Consulting-Services ist Red Hat ein bewährter Partner der Fortune 500 Unternehmen. Als
+					   strategischer Partner für Cloud-Anbieter, Systemintegratoren, Anwendungsanbieter, Kunden und Open
+					   Source Communities hilft Red Hat Organisationen auf ihrem Weg in die digitale Zukunft.
+                     </p>
+                  </div>
+                </div>
+
+                <div class="locations flex-row">
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>EUROPA, NAHOST,
+UND AFRIKA (EMEA)</strong>
+                      <br/>
+                      00800 7334 2835
+                      <br/>
+                      <a href="https://de.redhat.com">de.redhat.com</a>
+                      <br/>
+                      <a href="mailto:europe@redhat.com">europe@redhat.com</a>
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>TÜRKEI</strong>
+                      <br/>
+                      00800 448820640
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>ISRAEL</strong>
+                      <br/>
+                      1 809 449548
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>VAE</strong>
+                      <br/>
+                      8000-4449549
+                    </div>
+                  </div>
+                </div>
+
+                <small class="copyright-text" data-max-line="5">
+                  Copyright © 2019 Red Hat, Inc. Red Hat, Red Hat Enterprise Linux, das Red Hat Logo und JBoss sind Marken oder eingetragene Marken
+von Red Hat, Inc. oder deren Tochterunternehmen in den USA und anderen Ländern. Linux® ist eine in den USA und anderen Ländern
+eingetragene Marke von Linus Torvalds.
+                </small>
+              </div><!--main-content-footer-->
+              
+              <!-- SPANISH (ES) -->
+              <div class="main-content-footer flex-col es">
+                <div class="about">
+                   <div class="text-block about-text" data-max-line="8">
+                     <h1>ACERCA DE RED HAT</h1>
+                     <p>
+						Red Hat es el proveedor líder de soluciones de software de open source para empresas, que adopta
+						un enfoque basado en la comunidad para ofrecer tecnologías confiables y de alto rendimiento de
+						Linux, nube híbrida, contenedores y Kubernetes. Red Hat ayuda a los clientes a integrar aplicaciones
+						de TI nuevas y existentes, desarrollar aplicaciones nativas de la nube, estandarizar en nuestro sistema
+						operativo líder del sector y automatizar, proteger y gestionar entornos complejos. Sus servicios
+						galardonados de soporte, capacitación y consultoría convierten a Red Hat en un asesor de confianza
+						para las empresas de Fortune 500. Como partner estratégico de proveedores de nube, integradores de
+						sistemas, proveedores de aplicaciones, clientes y comunidades de open source, Red Hat puede ayudar a
+						las organizaciones a prepararse para el futuro digital.
+                     </p>
+                  </div>
+                </div>
+
+                <div class="locations flex-row">
+                  <div class="location-block es">
+                    <div class="text-block">
+                      <strong>ARGENTINA</strong>
+                      <br/>
+                      +54 11 4329 7300
+                    </div>
+                  </div>
+                  <div class="location-block es">
+                    <div class="text-block">
+                      <strong>CHILE</strong>
+                      <br/>
+                      +562 2597 7000
+                    </div>
+                  </div>
+                  <div class="location-block es">
+                    <div class="text-block">
+                      <strong>COLOMBIA</strong>
+                      <br/>
+                      +571 508 8631
+                      <br/>
+                      +52 55 8851 6400
+                    </div>
+                  </div>
+                </div>
+                <div class="locations flex-row">
+                  <div class="location-block es">
+                    <div class="text-block">
+                      <strong>MÉXICO</strong>
+                      <br/>
+                      +52 55 8851 6400
+                    </div>
+                  </div>
+                  <div class="location-block es">
+                    <div class="text-block">
+                      <strong>ESPAÑA</strong>
+                      <br/>
+                      +34 914 148 800
+                    </div>
+                  </div>
+                </div>
+
+                <small class="copyright-text" data-max-line="5">
+                Copyright © 2019 Red Hat, Inc. Red Hat, Red Hat Enterprise Linux, el logotipo Red Hat, y JBoss son marcas comerciales
+                de Red Hat, Inc. registradas en Estados Unidos y en otros países. Linux® es la marca comercial registrada de Linus Torvalds
+                en Estados Unidos y en otros países.
+                </small>
+              </div><!--main-content-footer-->
+              
+              <!-- SPANISH (esES) -->
+              <div class="main-content-footer flex-col esES">
+                <div class="about">
+                   <div class="text-block about-text" data-max-line="8">
+                     <h1>ACERCA DE RED HAT</h1>
+                     <p>
+						Red Hat es el proveedor líder de soluciones de software de open source para empresas, que adopta
+						un enfoque basado en la comunidad para ofrecer tecnologías confiables y de alto rendimiento de
+						Linux, nube híbrida, contenedores y Kubernetes. Red Hat ayuda a los clientes a integrar aplicaciones
+						de TI nuevas y existentes, desarrollar aplicaciones nativas de la nube, estandarizar en nuestro sistema
+						operativo líder del sector y automatizar, proteger y gestionar entornos complejos. Sus servicios
+						galardonados de soporte, capacitación y consultoría convierten a Red Hat en un asesor de confianza
+						para las empresas de Fortune 500. Como partner estratégico de proveedores de nube, integradores de
+						sistemas, proveedores de aplicaciones, clientes y comunidades de open source, Red Hat puede ayudar a
+						las organizaciones a prepararse para el futuro digital.
+                     </p>
+                  </div>
+                </div>
+
+                <div class="locations flex-row">
+                  <div class="location-block es">
+                    <div class="text-block">
+                      <strong>ARGENTINA</strong>
+                      <br/>
+                      +54 11 4329 7300
+                    </div>
+                  </div>
+                  <div class="location-block es">
+                    <div class="text-block">
+                      <strong>CHILE</strong>
+                      <br/>
+                      +562 2597 7000
+                    </div>
+                  </div>
+                  <div class="location-block es">
+                    <div class="text-block">
+                      <strong>COLOMBIA</strong>
+                      <br/>
+                      +571 508 8631
+                      <br/>
+                      +52 55 8851 6400
+                    </div>
+                  </div>
+                </div>
+                <div class="locations flex-row">
+                  <div class="location-block es">
+                    <div class="text-block">
+                      <strong>MÉXICO</strong>
+                      <br/>
+                      +52 55 8851 6400
+                    </div>
+                  </div>
+                  <div class="location-block es">
+                    <div class="text-block">
+                      <strong>ESPAÑA</strong>
+                      <br/>
+                      +34 914 148 800
+                    </div>
+                  </div>
+                </div>
+
+                <small class="copyright-text" data-max-line="5">
+                Copyright © 2019 Red Hat, Inc. Red Hat, Red Hat Enterprise Linux, el logotipo Red Hat, y JBoss son marcas comerciales
+                de Red Hat, Inc. registradas en Estados Unidos y en otros países. Linux® es la marca comercial registrada de Linus Torvalds
+                en Estados Unidos y en otros países.
+                </small>
+              </div><!--main-content-footer-->
+              
+              <!-- FRENCH (FR) -->
+              <div class="main-content-footer flex-col fr">
+                <div class="about">
+                   <div class="text-block about-text" data-max-line="8">
+                     <h1>À PROPOS DE RED HAT</h1>
+                     <p>
+						Premier éditeur mondial de solutions logicielles Open Source pour les entreprises, Red Hat s’appuie sur
+						une approche communautaire pour proposer des technologies Linux, de cloud hybride, de conteneur
+						et Kubernetes fiables et performantes. Red Hat aide ses clients à intégrer des applications nouvelles
+						et existantes, à développer des applications natives pour le cloud, à standardiser leur environnement
+						sur son système d’exploitation leader sur le marché ainsi qu’à automatiser, sécuriser et gérer des
+						environnements complexes. Red Hat propose également des services d’assistance, de formation et de
+						certification primés qui lui ont valu le titre de conseiller de confiance auprès des entreprises du Fortune
+						500. Partenaire stratégique des prestataires de cloud, intégrateurs système, fournisseurs d’applications,
+						clients et communautés Open Source, Red Hat aide les entreprises à se préparer à un avenir toujours
+						plus numérique.
+                     </p>
+                  </div>
+                </div>
+
+                <div class="locations flex-row">
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>EUROPE, MOYEN-ORIENT
+ET AFRIQUE (EMEA)</strong>
+                      <br/>
+                      00800 7334 2835
+                      <a href="mailto:europe@redhat.com">europe@redhat.com</a>
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>FRANCE</strong>
+                      <br/>
+                      00 33 1 4191 2323
+                      <a href="https://fr.redhat.com">fr@redhat.com</a>
+                    </div>
+                  </div>
+                </div>
+
+                <small class="copyright-text" data-max-line="5">
+				Copyright © 2019 Red Hat, Inc. Red Hat, Red Hat Enterprise Linux, le logo Red Hat et JBoss sont des marques de Red Hat, Inc., déposées
+				aux États-Unis et dans d’autres pays. Linux® est la marque commerciale déposée de Linus Torvalds aux États-Unis et dans d’autres pays.
+                </small>
+              </div><!--main-content-footer-->
+              
+              <!-- PORTUGUESE (ptBR) -->
+              <div class="main-content-footer flex-col ptBR">
+                <div class="about">
+                   <div class="text-block about-text" data-max-line="8">
+                     <h1>SOBRE A RED HAT</h1>
+                     <p>
+						A Red Hat é a líder mundial no fornecimento de soluções corporativas de software open source. Por
+						meio da estreita parceria com as comunidades, a Red Hat oferece tecnologias confiáveis e de alto
+						desempenho em Linux, cloud híbrida, containers e Kubernetes. A Red Hat ajuda os clientes a integrar
+						aplicações de TI novas e existentes, desenvolver aplicações nativas em cloud e definir padrões
+						com nosso sistema operacional líder do setor, além de automatizar, proteger e gerenciar ambientes
+						complexos. Com serviços de consultoria, treinamento e suporte premiados, a Red Hat tem a confiança
+						das empresas da Fortune 500. Como um parceiro estratégico para provedores de cloud, integradores
+						de sistema, fornecedores de aplicações, clientes e comunidades open source, a Red Hat ajuda as
+						organizações a se preparar para o futuro digital.
+                     </p>
+                  </div>
+                </div>
+
+                <div class="locations flex-row">
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>América Latina</strong>
+                      <br/>
+                      +54 11 4329 7300
+                      <a href="mailto:latammktg@redhat.com">latammktg@redhat.com</a>
+                    </div>
+                  </div>
+                  <div class="location-block">
+                    <div class="text-block">
+                      <strong>Brasil</strong>
+                      <br/>
+                      +55 11 3629 6000
+                      <a href="mailto:marketing-br@redhat.com">marketing-br@redhat.com</a>
+                    </div>
+                  </div>
+                </div>
+
+                <small class="copyright-text" data-max-line="5">
+					Copyright © 2019 Red Hat, Inc. Red Hat, Red Hat Enterprise Linux, o logotipo Red Hat e JBoss são marcas registradas da Red Hat, Inc.
+					ou suas subsidiárias, nos Estados Unidos da América e em outros países. Linux® é uma marca registrada da Linus Torvalds nos Estados
+					Unidos e em outros países.
+                </small>
+              </div><!--main-content-footer-->
+              
+              <!-- CHINESE (zhCN) -->
+              <div class="main-content-footer flex-col zhCN">
+                <div class="about">
+                   <div class="text-block about-text" data-max-line="8">
+                     <h1>关于红帽</h1>
+                     <p>
+						红帽是世界领先的企业开源软件解决方案供应商,依托强大的社区支持,为客户提供稳定可靠而且高性能的
+						Linux、混合云、容器和 Kubernetes 技术。 红帽帮助客户集成现有和新的 IT 应用,开发云原生应用,在业界
+						领先的操作系统上开展标准化作业,并实现复杂环境的自动化、安全防护和管理。 凭借一流的支持、培训和
+						咨询服务,红帽成为《财富》500 强公司备受信赖的顾问。 作为众多云提供商、系统集成商、应用供应商、客户
+						和开源社区的战略合作伙伴,红帽致力于帮助企业做好准备,拥抱数字化未来。
+                     </p>
+                  </div>
+                </div>
+
+                <div class="locations flex-row">
+                  <div class="location-block zhCN">
+                    <div class="text-block">
+                      <strong>销售及技术支持</strong>
+                      <br/>
+                      800 810 2100
+                      <br/>
+                      400 890 2100
+                    </div>
+                  </div>
+                  <div class="location-block zhCN">
+                    <div class="text-block">
+                      <strong>红帽北京办公地址</strong>
+                      <br/>
+                      北京市朝阳区东大桥路 9 号 侨福芳草地大厦 A 座 8 层 邮编: 100020
+                      <br/>
+                      8610 6533 9300
+                    </div>
+                  </div>
+                </div>
+
+                <small class="copyright-text" data-max-line="5">
+					© 2019 年红帽版权所有。红帽、红帽企业 Linux、红帽标识以及 JBoss 均为红帽及其子公司在美国或其他国家的注册商标。 Linux® 是 Linus
+					Torvalds 在美国或其他国家的注册商标。
+                </small>
+              </div><!--main-content-footer-->
+              
+            </div><!--main-content-->
+           
+            
+          </div><!--main-->
+          
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+	{{/block.RH_last-page--cs}}
+    
+	{{/collection.RH_general-collateral--cs}}
+    
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+      
+      setInterval(() => {
+        injectHeading();
+      }, 500);
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+        });
+      });
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+      
+      function injectHeading() {
+        const src = document.querySelector('.js-heading-src');
+        const targets = document.querySelectorAll('.js-heading-target');
+
+        targets.forEach(target => {
+          // If no text is set for the Type, it will fallback to 'Checklist'
+          const output = src.innerHTML;
+          target.innerHTML = output;
+        });
+        
+        const nameSrc = document.querySelector('.js-name-src');
+        const nameTargets = document.querySelectorAll('.js-name-target');
+
+        nameTargets.forEach(nameTarget => {
+          // If no text is set for the Type, it will fallback to 'Checklist'
+          const output = (nameSrc.innerText == '') ? 'Name of document goes here (Change on Master, not individual pages)' : nameSrc.innerHTML;
+          nameTarget.innerHTML = output;
+        });
+        
+        const urlSrc = document.querySelector('.js-url-src');
+        const urlTargets = document.querySelectorAll('.js-url-target');
+
+        urlTargets.forEach(urlTarget => {
+          // If no text is set for the Type, it will fallback to 'Checklist'
+          const output = (urlSrc.innerText == '') ? 'redhat.com' : urlSrc.innerHTML;
+          const urlOutput = (urlSrc.href == '') ? 'redhat.com' : urlSrc.innerHTML;
+          urlTarget.innerHTML = output;
+          urlTarget.href = urlOutput;
+        });
+      }
+
+    </script>
+
+
+  </body>
+</html>
