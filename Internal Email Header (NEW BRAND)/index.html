@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='//overpass-30e2.kxcdn.com/overpass.css' rel='stylesheet' />      
+    {{{account.snippets.design-system-link}}}
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <style>
+
+      html {
+        font-family: "Red Hat Display";
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        font-size: initial;
+      }
+
+      .background, .background-image, .background-colour {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+      }
+
+      .background-image {
+        background-image: url({{{background-image}}}{{^background-image}}https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/1ef962c5d6f261c3f23449456778e234/corporate-background-placeholder.jpg{{/background-image}});
+        background-size: cover; 
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .white .background-colour {
+        background-color: #E4EAF1;
+        opacity: 0.7;
+      }
+
+      .white .background-image {
+        mix-blend-mode: screen;
+      }
+
+      .white {
+        color: #231f20;
+      }
+
+      .black .background-colour {
+        background-color: #101010;
+        opacity: 0.7;
+
+      }
+
+      .black .background-image {
+        mix-blend-mode: multiply;         
+      }
+
+      .black {
+        color: #ffffff;
+      }
+
+      .red .background-colour {
+        background-color: #ee0000;
+      }
+
+      .red .background-image {
+        mix-blend-mode: multiply;
+      }
+
+      .red {
+        color: #ffffff;
+      }
+
+      .blue .background-colour {
+        background-color: #02aeb9;
+      }
+
+      .blue .background-image {
+        mix-blend-mode: multiply;
+      }
+
+      .blue {
+        color: #ffffff;
+      }
+
+      .content-wrapper {
+        height: 100vh;
+        padding: 2em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      #internal-email-banner-headline {
+        font-size: 4.4em;
+        line-height: 105%;
+      }
+      #internal-email-banner-date {
+        font-size: 2em;
+       /* margin-top: 2.6em;*/
+      }
+      
+      #internal-email-banner-subheading{
+        font-size: 2.5em;
+        line-height: 1.2;
+      }
+
+    </style>
+  </head>
+
+  <body class="{{{ theme-colour-header }}}">
+    <div class="background">
+      <div class="background-colour"></div>
+      <div class="background-image"></div>
+    </div>
+    <div class="content-wrapper">
+      <div id="internal-email-banner-headline" style="flex:1 0 auto;">
+        <div class="headline" data-max-height="dynamic">
+        {{{internal-email-banner-headline}}}
+        </div>
+      </div><!-- internal-email-banner-headline -->
+      <div class="internalWrapper">
+        <div id="internal-email-banner-date" data-max-line="1.5">
+          {{{internal-email-banner-date}}}
+        </div><!-- internal-email-banner-date -->
+        <div id="internal-email-banner-subheading" data-max-line="2.5">
+          {{{internal-email-banner-subheading}}}
+        </div><!-- internal-email-banner-subheading -->
+      </div><!--internalWrapper-->
+    </div><!-- content-wrapper -->
+
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script> 
+    <script src="js/fontfaceobserver.js"></script>
+    <script>
+    
+     // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+        });
+      });
+      
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });      
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.addEventListener('DOMContentLoaded', function(event) {
+        const fonts = ['Red Hat Display'];
+        const fontObservers = [];
+
+        fonts.forEach(font => {
+          const obs = new FontFaceObserver(font);
+          fontObservers.push(obs.load())
+        });
+
+        Promise.all(fontObservers).then(() => {
+          maxLineCheck();
+          maxHeightCheck();
+
+          document.dispatchEvent(new Event('printready'));
+        });
+      });
+      
+      var headline = document.querySelector(".headline");
+      headline.innerHTML = ("{{{internal-email-banner-headline}}}".trim()).split("[amp]").join("&").split("[break]").join("<br/>");
+      var headline = document.getElementsByClassName('headline')[0];
+      
+      console.log (headline.innerHTML);
+    
+    </script>
+
+  </body>
+</html>
