@@ -1,0 +1,84 @@
+<!DOCTYPE>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    /*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}img,embed,iframe,object,audio,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
+    
+    #image {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      background: center center no-repeat;
+      background-size: cover;
+    }
+    
+    .overlay-image, .overlay-color {
+      position: absolute; 
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    
+    .overlay-image {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    
+    .overlay-image {
+      opacity: 0.5;
+      filter: grayscale(1);
+      mix-blend-mode: screen;
+    }
+    
+    .overlay-color {
+      mix-blend-mode: multiply;
+    }
+    
+    .overlay {
+      z-index: 5;
+    }
+    
+    .yellow .overlay {
+      background-color: #FFCD00;
+      mix-blend-mode: multiply; }
+    .yellow #image { 
+      filter: grayscale(100%); 
+      opacity: 0.5; }
+    
+    .black .overlay {
+      background-color: black;
+      mix-blend-mode: initial;
+      opacity: 0.5; }
+    .black #image { 
+      filter: grayscale(100%);
+      opacity: 0.5; }
+    
+    .play-button {
+      z-index: 10;
+      background-image: url(https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/361a01db8285b2ad3137ea482c8a58e5/white-thing.png);
+      background-size: 20%;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.85; }
+    
+    .black .play-button {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/0ed1669bc84472014ec861f1f738615e/yellow-thing.png');
+    }
+    
+    .hide-play-button .play-button {
+      display: none;
+    }
+    
+    
+  </style>
+</head>
+<body>
+  <div id="image" style="background-image: url('{{{ email-image }}}')"></div>
+  <div class="overlay-color" style="background-color: {{{ newsletter-fallback-color }}}"></div>
+  <div class="overlay-image" style="background-image: url('{{{ overlay-image }}}')"></div>
+
+</body>
+</html>
